@@ -2,7 +2,7 @@
 setopt VI
 export EDITOR='vi'
 
-# Keep 1000 lines of history within the shell and save it to ~/.zsh_history:
+# Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_ALL_DUPS
