@@ -4,8 +4,6 @@ import System.Exit
 import XMonad
 
 import Data.Char (chr)
-import Data.IORef
-import Control.Monad (join)
 
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
@@ -29,15 +27,14 @@ import XMonad.Layout.Tabbed
 import XMonad.Util.Cursor
 import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
-data KeyboardLayout = Qwerty | Colemak deriving (Show)
-
 ---------------------------------------------------------------------
 --  Bar Setup
 ---------------------------------------------------------------------
 
 -- Workspace Names
-myWorkspaces :: [WorkspaceId]
-myWorkspaces = ["1:main", "2:web", "3:chat", "4:code", "5:code"] ++ map show [6..8] ++ ["9:misc"]
+allWorkspaces, staticWorkspaces :: [WorkspaceId]
+allWorkspaces = ["1:main", "2:web", "3:chat", "4:code", "5:code"] ++ map show [6..8] ++ ["9:misc"]
+staticWorkspaces = []
 
 -- Dzen
 workspaceDzenCmd :: String
@@ -48,21 +45,22 @@ tempDzen2 = "dzen2 -x '0' -y '0' -w '1440' -xs '1' -ta 'r'"
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
 myDzenPP h = dzenPP
-    {   ppCurrent           = dzenColor "#333333" "#339933" . pad
-    ,   ppVisible           = dzenColor "#333333" "#3399FF" . pad
-    ,   ppHidden            = dzenColor "#EEEEEE" "#444444" . pad
-    ,   ppHiddenNoWindows   = dzenColor "#999999" "#333333" . pad
-    ,   ppUrgent            = dzenColor "#333333" "#CCCC33" . pad
-    ,   ppSep               = "^fg(" ++ "#339933" ++ ")|"
-    ,   ppWsSep             = ""
-    ,   ppTitle             = dzenColor "#66CC66" "#333333" . pad . titleText . dzenEscape
+    {   ppCurrent           = dzenColor colourRed       colourBlack . pad
+    ,   ppVisible           = dzenColor colourBlue      colourBlack . pad
+    ,   ppHidden            = dzenColor colourWhiteAlt  colourBlack . pad
+    ,   ppHiddenNoWindows   = dzenColor colourGray      colourBlack . pad
+    ,   ppUrgent            = dzenColor colourGreen     colourBlack . pad
+    ,   ppTitle             = dzenColor colourWhiteAlt  colourBlack . pad . titleText . dzenEscape
+    ,   ppLayout            = dzenColor colourBlue      colourBlack . pad
     ,   ppOrder             = \(ws:l:t:_) -> [l,ws,t]
-    ,   ppLayout            = dzenColor "#EEEEEE" "#3939EE" . pad
+    ,   ppSep               = "^fg(" ++ colourGray ++ ")|"
+    ,   ppWsSep             = ""
     ,   ppOutput            = hPutStrLn h
     }
     where
         titleText [] = "Desktop"
         titleText x = (shorten 82 x)
+
 
 ---------------------------------------------------------------------
 --  Colours / Fonts / Appearance
@@ -71,11 +69,24 @@ myDzenPP h = dzenPP
 barFont             = "inconsolata"
 barXFont            = "inconsolata:size=12"
 xftFont             = "xft: inconsolata-14"
-myFocusedBorder     = "#33cc33"
-myUnfocusedBorder   = "#333333"
 
 delimChar :: Char
 delimChar = chr 127
+
+-- Color Definitions
+colourBlack         = "#020202"
+colourBlackAlt      = "#1c1c1c"
+colourGray          = "#444444"
+colourGrayAlt       = "#161616"
+colourWhite         = "#a9a6af"
+colourWhiteAlt      = "#9d9d9d"
+colourMagenta       = "#8e82a2"
+colourBlue          = "#3475aa"
+colourRed           = "#d74b73"
+colourGreen         = "#99cc66"
+
+myFocusedBorder     = colourBlackAlt
+myUnfocusedBorder   = colourGray
 
 myTabTheme = defaultTheme
     {   fontName            = barXFont
@@ -98,6 +109,8 @@ myManageHook = composeAll
     , className =? "steam"          --> doFloat <+> doShift "1:main"
     , className =? "Xfce4-notifyd"  --> doF W.focusDown
     ]
+    where
+        my1Shifts = []
 
 ---------------------------------------------------------------------
 --  Layouts
@@ -143,11 +156,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -----------------------------------------------------------------
     --  Programs
     -----------------------------------------------------------------
-    -- launch a terminal
+    -- terminal
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
-    -- launch dmenu
+    -- dmenu
     , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+
+    -----------------------------------------------------------------
+    --  Global Controls 
+    -----------------------------------------------------------------
  
     -----------------------------------------------------------------
     --  Window Control
@@ -173,16 +190,16 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_Tab   ), windows W.focusUp)
  
     -- Move focus to the master window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    , ((modm,               xK_m     ), windows W.focusMaster)
  
     -- Swap the focused window and the master window
     , ((modm,               xK_Return), windows W.swapMaster)
  
     -- Swap the focused window with the next window
-    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown)
  
     -- Swap the focused window with the previous window
-    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp)
  
     -- Shrink the master area
     , ((modm,               xK_h     ), sendMessage Shrink)
@@ -252,7 +269,7 @@ main = do
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         {   terminal                = "urxvtc"
-        ,   workspaces              = myWorkspaces
+        ,   workspaces              = allWorkspaces
 
         -- Hooks / Layouts
         ,   layoutHook              = myLayout

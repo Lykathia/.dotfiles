@@ -1,0 +1,94 @@
+! -------------------------------------------------------------------
+!   XFT font settings
+! -------------------------------------------------------------------
+
+Xft.antialias:                  1
+Xft.autohint:                   0
+Xft.dpi:                        96
+Xft.hinting:                    1
+Xft.hintstyle:                  hintfull
+Xft.lcdfilter:                  lcddefault
+Xft.rgba:                       rgb
+
+! -------------------------------------------------------------------
+!   dzen2
+! -------------------------------------------------------------------
+
+dzen2.font:                     -*-inconsolata-medium-r-*-*-12-*-*-*-*-*-*-*
+dzen2.background:               #0c0c0b
+dzen2.foreground:               #ededeb
+
+! -------------------------------------------------------------------
+!   urxvt
+! -------------------------------------------------------------------
+
+URxvt*font:                     xft:Inconsolata:size=10
+URxvt*boldFont:                 xft:Inconsolata:size=10
+*URxvt.geometry:                80x25
+*URxvt.saveLines:               14000
+*URxvt.externalBorder:          0
+*URxvt.internalBorder:          0
+ 
+URxvt.depth:                    32
+URxvt.background:               rgba:0000/0000/0000/aaaa
+urxvt_drop*shading:             40
+*URxvt.mouseWheelScrollPage:    false
+*URxvt.scrollTtyKeypress:       true
+*URxvt.scrollWithBuffer:        false
+*URxvt.scrollTtyOutput:         false
+*URxvt.scrollBar:               false
+*URxvt.foreground:              white
+*URxvt.cursorColor:             grey
+*URxvt.highlightColor:          #D8DBE6
+*URxvt.highlightTextColor:      #000000
+*URxvt.cursorColor2:            black
+*URxvt.cursorBlink:             false
+*URxvt.perl-ext-common:         default,matcher,clipboard
+*URxvt.urlLauncher:             /usr/bin/dwb
+*URxvt.keysym.Control-x:        perl:clipboard:copy
+*URxvt.keysym.Control-v:        perl:clipboard:paste
+*URxvt.matcher.button:          1
+*URxvt.underlineURLs:           true
+URxvt*colorMode:                on
+URxvt*cursorBlink:              false
+URxvt*cursorUnderline:          false
+
+! -------------------------------------------------------------------
+!   Cursor
+! -------------------------------------------------------------------
+
+Xcursor.theme:  left_ptr
+*cursorColor:   #999999
+
+! -------------------------------------------------------------------
+!   Colours
+! -------------------------------------------------------------------
+
+*background: #020202
+*foreground: #999999
+
+! black
+*color0:  #282a2b
+*color8:  #2c2f30
+! red
+*color1:  #ac357e
+*color9:  #df45a4
+! green
+*color2:  #65ac35
+*color10: #83df45
+! yellow
+*color3:  #a8ac35
+*color11: #dadf45
+! blue
+*color4:  #273a87
+*color12: #3955c4
+! magenta
+*color5:  #666699
+*color13: #8888cc
+! cyan
+*color6:  #8caff0
+*color14: #9bbaf1
+! white
+*color7:  #a8a8a8
+*color15: #f0f0f0
+
