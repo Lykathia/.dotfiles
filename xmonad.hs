@@ -108,6 +108,7 @@ myManageHook = composeAll
     , className =? "Gimp"           --> doFloat
     , className =? "steam"          --> doFloat <+> doShift "1:main"
     , className =? "Xfce4-notifyd"  --> doF W.focusDown
+    , isFullscreen                  --> doFullFloat
     ]
     where
         my1Shifts = []
@@ -133,16 +134,9 @@ myLayout =
 
 myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
   where
-    -- default tiling algorithm partitions the screen into two panes
     tiled   = Tall nmaster delta ratio
- 
-    -- The default number of windows in the master pane
     nmaster = 1
- 
-    -- Default proportion of screen occupied by master pane
     ratio   = 1/2
- 
-    -- Percent of screen to increment by when resizing panes
     delta   = 3/100
 
 --------------------------------------------------------------------
@@ -273,7 +267,7 @@ main = do
 
         -- Hooks / Layouts
         ,   layoutHook              = myLayout
-        ,   manageHook              = (doF W.swapDown) <+> myManageHook
+        ,   manageHook              = manageDocks <+> (doF W.swapDown) <+> myManageHook
         ,   handleEventHook         = fullscreenEventHook
         ,   startupHook             = myStartupHook
         ,   logHook                 = do
