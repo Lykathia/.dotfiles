@@ -15,6 +15,11 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 bindkey '^R' history-incremental-search-backward
 
+# Annoying beeps
+unsetopt beep
+unsetopt hist_beep
+unsetopt list_beep
+
 # Terminal Prompt
 autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}%# "

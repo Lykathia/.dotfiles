@@ -22,6 +22,7 @@ import XMonad.Layout.LayoutHints (layoutHints)
 import XMonad.Layout.NoBorders (noBorders, smartBorders, withBorder)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Tabbed
 
 import XMonad.Util.Cursor
@@ -33,7 +34,7 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 -- Workspace Names
 allWorkspaces, staticWorkspaces :: [WorkspaceId]
-allWorkspaces = ["1:main", "2:web", "3:chat", "4:code", "5:code"] ++ map show [6..8] ++ ["9:misc"]
+allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ map show [6..8] ++ ["9:misc"]
 staticWorkspaces = []
 
 -- Dzen
@@ -66,36 +67,40 @@ myDzenPP h = dzenPP
 --  Colours / Fonts / Appearance
 ---------------------------------------------------------------------
 
-barFont             = "inconsolata"
-barXFont            = "inconsolata:size=12"
-xftFont             = "xft: inconsolata-14"
+-- Fonts
+barFont, xftFont :: String
+barFont     = "inconsolata"
+xftFont     = "xft: inconsolata-14"
 
 delimChar :: Char
 delimChar = chr 127
 
 -- Color Definitions
-colourBlack         = "#020202"
-colourBlackAlt      = "#1c1c1c"
-colourGray          = "#444444"
-colourGrayAlt       = "#161616"
-colourWhite         = "#a9a6af"
-colourWhiteAlt      = "#9d9d9d"
-colourMagenta       = "#8e82a2"
-colourBlue          = "#3475aa"
-colourRed           = "#d74b73"
-colourGreen         = "#99cc66"
+colourBlack     = "#020202"
+colourBlackAlt  = "#1c1c1c"
+colourGray      = "#444444"
+colourGrayAlt   = "#161616"
+colourWhite     = "#a9a6af"
+colourWhiteAlt  = "#9d9d9d"
+colourMagenta   = "#8e82a2"
+colourBlue      = "#3475aa"
+colourRed       = "#d74b73"
+colourGreen     = "#99cc66"
 
 myFocusedBorder     = colourBlackAlt
 myUnfocusedBorder   = colourGray
 
+myTabTheme :: Theme
 myTabTheme = defaultTheme
-    {   fontName            = barXFont
-        --activeColor         = ,
-        --inactiveColor       = ,
-        --activeBorderColor   = ,
-        --inactiveBorderColor = ,
-        --activeTextColor     = ,
-        --inactiveTextColor   = 
+    {   fontName            = barFont
+    ,   activeColor         = colourBlackAlt
+    ,   activeTextColor     = colourWhiteAlt
+    ,   activeBorderColor   = colourGray
+    ,   inactiveColor       = colourBlack
+    ,   inactiveTextColor   = colourGray
+    ,   inactiveBorderColor = colourBlackAlt
+    ,   urgentBorderColor   = colourGray
+    ,   urgentTextColor     = colourGreen
     }
 
 ---------------------------------------------------------------------
@@ -103,12 +108,11 @@ myTabTheme = defaultTheme
 ---------------------------------------------------------------------
 
 myManageHook :: ManageHook
-myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , className =? "steam"          --> doFloat <+> doShift "1:main"
-    , className =? "Xfce4-notifyd"  --> doF W.focusDown
-    , isFullscreen                  --> doFullFloat
+myManageHook = composeAll . concat $
+    [ [ className =? "Xfce4-notifyd"  --> doF W.focusDown ]
+    , [ isFullscreen                  --> doFullFloat ]
+    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
+    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
     ]
     where
         my1Shifts = []
@@ -118,26 +122,17 @@ myManageHook = composeAll
 ---------------------------------------------------------------------
 
 -- Layouts
-{-
-tiledTab    = renamed "A"  $ smartBorders $ ResizableTall 1 0.03 0.5 []
-chatTab     = renamed "C"  $ withIM (0.20) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
--}
+tiledLayout     = renamed [Replace "A"] $ smartBorders $ ResizableTall 1 0.03 0.5 []
+fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
+chatLayout      = renamed [Replace "C"] $ withIM (0.20) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
-{-
-myLayout = 
-    $ avoidStruts
-    $ onWorkspace
+myLayout = avoidStruts 
+    -- $ onWorkspace (allWorkspaces !! 1) webLayout
+    $ onWorkspace (allWorkspaces !! 2) chatLayout
+    $ allLayouts
     where
-        defaultLayout = 
--}
-
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
-  where
-    tiled   = Tall nmaster delta ratio
-    nmaster = 1
-    ratio   = 1/2
-    delta   = 3/100
+        allLayouts = tiledLayout ||| fullLayout
 
 --------------------------------------------------------------------
 --  Keybindings
