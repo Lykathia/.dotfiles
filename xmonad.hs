@@ -17,15 +17,18 @@ import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Gaps
+import XMonad.Layout.Grid
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints (layoutHints)
 import XMonad.Layout.NoBorders (noBorders, smartBorders, withBorder)
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.Renamed
 import XMonad.Layout.ResizableTile
+import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 
 import XMonad.Util.Cursor
+import XMonad.Util.Loggers
 import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 ---------------------------------------------------------------------
@@ -39,9 +42,9 @@ staticWorkspaces = []
 
 -- Dzen
 workspaceDzenCmd :: String
-workspaceDzenCmd = "dzen2 -x '0' -y '884' -h '16' -ta 'l'"
-tempDzen1 = "dzen2 -x '0' -y '0' -w '1440' -xs '0' -ta 'l'"
-tempDzen2 = "dzen2 -x '0' -y '0' -w '1440' -xs '1' -ta 'r'"
+workspaceDzenCmd = "dzen2 -x '0' -y '884' -h '16' -ta 'l' -p -e ''"
+tempDzen1 = "dzen2 -x '0' -y '0' -h '16' -xs '0' -ta 'r' -p -e ''"
+tempDzen2 = "while true; do date; sleep 1; done | dzen2 -x '0' -y '0' -h '16' -xs '1' -ta 'r' -p -e ''"
 
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
@@ -62,6 +65,8 @@ myDzenPP h = dzenPP
         titleText [] = "Desktop"
         titleText x = (shorten 82 x)
 
+volume :: Logger
+volume = logCmd "ps -e"
 
 ---------------------------------------------------------------------
 --  Colours / Fonts / Appearance
@@ -123,8 +128,9 @@ myManageHook = composeAll . concat $
 
 -- Layouts
 tiledLayout     = renamed [Replace "A"] $ smartBorders $ ResizableTall 1 0.03 0.5 []
+gridLayout      = renamed [Replace "G"] $ smartBorders $ spacing 5 $ Grid
 fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
-chatLayout      = renamed [Replace "C"] $ withIM (0.20) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
+chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
 myLayout = avoidStruts 
@@ -132,7 +138,7 @@ myLayout = avoidStruts
     $ onWorkspace (allWorkspaces !! 2) chatLayout
     $ allLayouts
     where
-        allLayouts = tiledLayout ||| fullLayout
+        allLayouts = tiledLayout ||| gridLayout ||| fullLayout
 
 --------------------------------------------------------------------
 --  Keybindings
@@ -154,7 +160,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -----------------------------------------------------------------
     --  Global Controls 
     -----------------------------------------------------------------
- 
+    {- 
+    -- ncmpcpp
+    -}
+
     -----------------------------------------------------------------
     --  Window Control
     -----------------------------------------------------------------
@@ -218,7 +227,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
  
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "killall trayer nm-applet; xmonad --recompile; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall dzen2 trayer nm-applet; xmonad --recompile; xmonad --restart")
     ]
     ++
  
@@ -271,7 +280,7 @@ main = do
 
         -- Graphical stuff
         ,   focusFollowsMouse       = True
-        ,   borderWidth             = 0
+        ,   borderWidth             = 1
         ,   normalBorderColor       = myUnfocusedBorder
         ,   focusedBorderColor      = myFocusedBorder
 
