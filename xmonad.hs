@@ -37,7 +37,7 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 -- Workspace Names
 allWorkspaces, staticWorkspaces :: [WorkspaceId]
-allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ map show [6..8] ++ ["9:misc"]
+allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ map show [6..7] ++ ["8:steam", "9:misc"]
 staticWorkspaces = []
 
 -- Dzen
@@ -117,10 +117,11 @@ myManageHook = composeAll . concat $
     [ [ className =? "Xfce4-notifyd"  --> doF W.focusDown ]
     , [ isFullscreen                  --> doFullFloat ]
     , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
-    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
+    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "8:steam"   | x <- my1Shifts ]
     ]
     where
         my1Shifts = []
+        my8Shifts = ["Steam", "Friends"]
 
 ---------------------------------------------------------------------
 --  Layouts
@@ -131,11 +132,13 @@ tiledLayout     = renamed [Replace "A"] $ smartBorders $ ResizableTall 1 0.03 0.
 gridLayout      = renamed [Replace "G"] $ smartBorders $ spacing 5 $ Grid
 fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
 chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
+steamLayout     = renamed [Replace "S"] $ withIM (0.15) (Title "Friends") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
 myLayout = avoidStruts 
     -- $ onWorkspace (allWorkspaces !! 1) webLayout
     $ onWorkspace (allWorkspaces !! 2) chatLayout
+    $ onWorkspace (allWorkspaces !! 7) steamLayout
     $ allLayouts
     where
         allLayouts = tiledLayout ||| gridLayout ||| fullLayout

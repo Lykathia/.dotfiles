@@ -13,7 +13,15 @@ setopt HIST_EXPIRE_DUPS_FIRST
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
+
+# Keybinds
 bindkey '^R' history-incremental-search-backward
+bindkey "^[[H" beginning-of-line
+bindkey "^[[1~" beginning-of-line
+bindkey "^[OH" beginning-of-line
+bindkey "^[[F"  end-of-line
+bindkey "^[[4~" end-of-line
+bindkey "^[OF" end-of-line
 
 # Annoying beeps
 unsetopt beep
@@ -24,12 +32,29 @@ unsetopt list_beep
 autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}%# "
 
-# Keybinds / Aliases
+# Aliases
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
     alias top='htop'
 fi
+
+# Grep stuffs
+export GREP_OPTIONS='--color=auto'
+export GREP_COLOR='1;32'
+
+# Coloured man pages
+man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+            man "$@"
+}
 
 # Use modern completion system
 autoload -Uz compinit
