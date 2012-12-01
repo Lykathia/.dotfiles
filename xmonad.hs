@@ -114,8 +114,7 @@ myTabTheme = defaultTheme
 
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $
-    [ [ className =? "Xfce4-notifyd"  --> doF W.focusDown ]
-    , [ isFullscreen                  --> doFullFloat ]
+    [ [ isFullscreen                  --> doFullFloat ]
     , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
     , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "8:steam"   | x <- my1Shifts ]
     ]
@@ -274,7 +273,7 @@ main = do
 
         -- Hooks / Layouts
         ,   layoutHook              = myLayout
-        ,   manageHook              = manageDocks <+> (doF W.swapDown) <+> myManageHook
+        ,   manageHook              = myManageHook <+> manageDocks <+> (doF W.swapDown)
         ,   handleEventHook         = fullscreenEventHook
         ,   startupHook             = myStartupHook
         ,   logHook                 = do
