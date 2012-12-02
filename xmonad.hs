@@ -37,14 +37,15 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 -- Workspace Names
 allWorkspaces, staticWorkspaces :: [WorkspaceId]
-allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ map show [6..7] ++ ["8:steam", "9:misc"]
+allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ 
+                ["6:", "7:", "8:STEAM", "9:VM"]
 staticWorkspaces = []
 
 -- Dzen
 workspaceDzenCmd :: String
-workspaceDzenCmd = "dzen2 -x '0' -y '884' -h '16' -ta 'l' -p -e ''"
-tempDzen1 = "dzen2 -x '0' -y '0' -h '16' -xs '0' -ta 'r' -p -e ''"
-tempDzen2 = "while true; do date; sleep 1; done | dzen2 -x '0' -y '0' -h '16' -xs '1' -ta 'r' -p -e ''"
+workspaceDzenCmd = "dzen2 -dock -y -1 -ta l -p -e ''"
+tempDzen1 = "dzen2 -xs 0 -dock -ta l -p -e ''"
+tempDzen2 = "while true; do date; sleep 1; done | dzen2 -xs 1 -dock -ta r -p -e ''"
 
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
@@ -73,9 +74,8 @@ volume = logCmd "ps -e"
 ---------------------------------------------------------------------
 
 -- Fonts
-barFont, xftFont :: String
-barFont     = "inconsolata"
-xftFont     = "xft: inconsolata-14"
+barFont :: String
+barFont = "inconsolata"
 
 delimChar :: Char
 delimChar = chr 127
@@ -114,7 +114,8 @@ myTabTheme = defaultTheme
 
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $
-    [ [ isFullscreen                  --> doFullFloat ]
+    [ [ className =? "Xfce4-notifyd" --> doIgnore ]
+    , [ isFullscreen                  --> doFullFloat ]
     , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
     , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "8:steam"   | x <- my1Shifts ]
     ]
