@@ -33,6 +33,7 @@ autoload -U colors && colors
 PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}%# "
 
 # Aliases
+alias pacman='sudo pacman'
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
