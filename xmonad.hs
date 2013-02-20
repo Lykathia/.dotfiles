@@ -1,4 +1,7 @@
+import System.Directory (getHomeDirectory)
+import System.FilePath ((</>))
 import System.IO
+import System.IO.Unsafe
 import System.Exit
 
 import XMonad
@@ -37,19 +40,22 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 ---------------------------------------------------------------------
 
 -- Workspace Names
-allWorkspaces, staticWorkspaces :: [WorkspaceId]
+allWorkspaces :: [WorkspaceId]
 allWorkspaces =
-    [   "TERM"
-    ,   "2:WEB"
-    ,   "3:CHAT"
-    ,   "4:CODE"
-    ,   "5:CODE"
-    ,   "6:"
-    ,   "7:"
-    ,   "8:STEAM"
-    ,   "9:VM"
+    [   workspace "" "TERM"
+    ,   workspace "arch.xbm" "WEB"
+    ,   workspace "" "CHAT"
+    ,   workspace "" "CODE"
+    ,   workspace "" "CODE"
+    ,   workspace "" "TEMP"
+    ,   workspace "" "TEMP"
+    ,   workspace "" "STEAM"
+    ,   workspace "" "VM"
     ]
-staticWorkspaces = []
+    where
+        workspace image text = unsafePerformIO $ do
+            homeDir <- getHomeDirectory
+            return ("^i(" ++ homeDir </> "configs/icons/sm4tik" </> image ++ ") " ++ text)
 
 -- Dzen
 workspaceDzenCmd :: String
