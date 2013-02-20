@@ -14,4 +14,7 @@ fi
 /usr/bin/urxvtd -q -f -o
 #/usr/bin/mpd ~/.mpd/mpd.conf
 
-exec xmonad
+# Setup WM enviroment
+#hsetroot -fill /path/to/background/image
+#setxkbmap us -variant colemak
+exec dbus-launch xmonad
