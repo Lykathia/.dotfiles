@@ -1,6 +1,12 @@
+# Initialization
+autoload -U colors compinit promptinit
+colors
+compinit
+promptinit
+
 # Set Editor
-setopt VI
-export EDITOR='vi'
+export EDITOR='vim'
+bindkey -v
 
 # Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
 setopt SHARE_HISTORY
@@ -29,8 +35,8 @@ unsetopt hist_beep
 unsetopt list_beep
 
 # Terminal Prompt
-autoload -U colors && colors
-PROMPT="%{$fg[green]%}%n@%m%{$reset_color%}:%{$fg[blue]%}%~%{$reset_color%}%# "
+PROMPT="%{$fg[green]%}%n@%m%#%{$reset_color%} "
+RPROMPT="%{$fg_bold[blue]%}%~%{$reset_color%}"
 
 # Aliases
 alias pacman='sudo pacman'
@@ -57,9 +63,7 @@ man() {
             man "$@"
 }
 
-# Use modern completion system
-autoload -Uz compinit
-compinit
+# Auto complete rules
 
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate
