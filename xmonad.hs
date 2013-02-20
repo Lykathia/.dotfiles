@@ -4,12 +4,12 @@ import System.IO
 import System.IO.Unsafe
 import System.Exit
 
-import XMonad
-
 import Data.Char (chr)
 
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
+
+import XMonad
 
 import XMonad.Hooks.DynamicHooks
 import XMonad.Hooks.DynamicLog
@@ -32,23 +32,25 @@ import XMonad.Layout.Spacing
 import XMonad.Layout.Tabbed
 
 import XMonad.Util.Cursor
-import XMonad.Util.Loggers
 import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 ---------------------------------------------------------------------
 --  Bar Setup
 ---------------------------------------------------------------------
 
+-- Helper Functoin for Icons
+-- TODO: Extract workspace so layout icons can also use
+
 -- Workspace Names
-allWorkspaces :: [WorkspaceId]
+allWorkspaces, staticWorkspaces :: [WorkspaceId]
 allWorkspaces =
     [   workspace "" "TERM"
     ,   workspace "arch.xbm" "WEB"
-    ,   workspace "" "CHAT"
-    ,   workspace "" "CODE"
-    ,   workspace "" "CODE"
+    ,   workspace "mail.xbm" "CHAT"
+    ,   workspace "mem.xbm" "CODE"
+    ,   workspace "mem.xbm" "CODE 2"
     ,   workspace "" "TEMP"
-    ,   workspace "" "TEMP"
+    ,   workspace "" "TEMP 2"
     ,   workspace "" "STEAM"
     ,   workspace "" "VM"
     ]
@@ -56,6 +58,8 @@ allWorkspaces =
         workspace image text = unsafePerformIO $ do
             homeDir <- getHomeDirectory
             return ("^i(" ++ homeDir </> "configs/icons/sm4tik" </> image ++ ") " ++ text)
+
+staticWorkspaces = []
 
 -- Dzen
 workspaceDzenCmd :: String
@@ -82,6 +86,7 @@ myDzenPP h = dzenPP
         titleText [] = "Desktop"
         titleText x = (shorten 82 x)
         clickableLayout x = "^ca(1,xdotool key alt+space)" ++ x ++ "^ca()"
+        clickableWorkspace x y = ""
 
 ---------------------------------------------------------------------
 --  Colours / Fonts / Appearance
@@ -244,7 +249,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
  
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "killall dzen2 trayer nm-applet; xmonad --recompile; xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall dzen2 trayer nm-applet; xmonad --recompile && xmonad --restart")
     ]
     ++
  
