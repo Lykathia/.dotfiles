@@ -13,6 +13,7 @@ import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 
 import XMonad.Layout.Fullscreen
@@ -37,8 +38,17 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 
 -- Workspace Names
 allWorkspaces, staticWorkspaces :: [WorkspaceId]
-allWorkspaces = ["1:TERM", "2:WEB", "3:CHAT", "4:CODE", "5:CODE"] ++ 
-                ["6:", "7:", "8:STEAM", "9:VM"]
+allWorkspaces =
+    [   "TERM"
+    ,   "2:WEB"
+    ,   "3:CHAT"
+    ,   "4:CODE"
+    ,   "5:CODE"
+    ,   "6:"
+    ,   "7:"
+    ,   "8:STEAM"
+    ,   "9:VM"
+    ]
 staticWorkspaces = []
 
 -- Dzen
@@ -56,7 +66,7 @@ myDzenPP h = dzenPP
     ,   ppHiddenNoWindows   = dzenColor colourGray      colourBlack . pad
     ,   ppUrgent            = dzenColor colourGreen     colourBlack . pad
     ,   ppTitle             = dzenColor colourWhiteAlt  colourBlack . pad . titleText . dzenEscape
-    ,   ppLayout            = dzenColor colourBlue      colourBlack . pad
+    ,   ppLayout            = dzenColor colourBlue      colourBlack . pad . clickableLayout
     ,   ppOrder             = \(ws:l:t:_) -> [l,ws,t]
     ,   ppSep               = "^fg(" ++ colourGray ++ ")|"
     ,   ppWsSep             = ""
@@ -65,9 +75,7 @@ myDzenPP h = dzenPP
     where
         titleText [] = "Desktop"
         titleText x = (shorten 82 x)
-
-volume :: Logger
-volume = logCmd "ps -e"
+        clickableLayout x = "^ca(1,xdotool key alt+space)" ++ x ++ "^ca()"
 
 ---------------------------------------------------------------------
 --  Colours / Fonts / Appearance
@@ -255,6 +263,7 @@ myStartupHook :: X ()
 myStartupHook = do
     spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --alpha 0 --tint 0x0c0c0b --height 16 --monitor 1"
     spawn "nm-applet"
+    setWMName "LG3D"
     setDefaultCursor xC_left_ptr 
 
 ---------------------------------------------------------------------
