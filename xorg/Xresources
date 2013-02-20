@@ -6,7 +6,7 @@ Xft.antialias:                  1
 Xft.autohint:                   0
 Xft.dpi:                        96
 Xft.hinting:                    1
-Xft.hintstyle:                  hintfull
+Xft.hintstyle:                  hintlight
 Xft.lcdfilter:                  lcddefault
 Xft.rgba:                       rgb
 
@@ -22,6 +22,7 @@ dzen2.foreground:               #ededeb
 !   urxvt
 ! -------------------------------------------------------------------
 
+URxvt.termName:                 rxvt-unicode-256color
 URxvt*font:                     xft:Inconsolata:size=10
 URxvt*boldFont:                 xft:Inconsolata:size=10
 *URxvt.geometry:                80x25
