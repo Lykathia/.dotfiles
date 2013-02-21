@@ -22,6 +22,7 @@ import XMonad.Hooks.UrgencyHook
 import XMonad.Layout.Fullscreen
 import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
+import XMonad.Layout.IndependentScreens (countScreens)
 import XMonad.Layout.IM
 import XMonad.Layout.LayoutHints (layoutHints)
 import XMonad.Layout.NoBorders (noBorders, smartBorders, withBorder)
@@ -269,11 +270,17 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 ---------------------------------------------------------------------
 --  Startup Commands
 ---------------------------------------------------------------------
+spawnTrayer :: Int -> String
+spawnTrayer n
+    | n == 1 = "trayer --edge bottom --align right --height 16 --width 10 --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 0 --tint 0x0c0c0b"
+    | n == 2 = "trayer --edge bottom --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --alpha 0 --tint 0x0c0c0b --height 16 --monitor 1"
 
-myStartupHook :: X ()
-myStartupHook = do
-    spawn "trayer --edge bottom --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --alpha 0 --tint 0x0c0c0b --height 16 --monitor 1"
+myStartupHook :: Int -> X ()
+myStartupHook n = do
+    spawn $ spawnTrayer n
     spawn "nm-applet"
+    spawn tempDzen1
+    spawn tempDzen2
     setWMName "LG3D"
     setDefaultCursor xC_left_ptr 
 
@@ -283,10 +290,9 @@ myStartupHook = do
 
 main :: IO ()
 main = do
-    -- Bars
-    workspaceBar    <- spawnPipe workspaceDzenCmd
-    topLeftDzenBar  <- spawnPipe tempDzen1 
-    topRightDzenBar <- spawnPipe tempDzen2
+    -- Get number of physical screens
+    screens <- countScreens
+    workspaceBar <- spawnPipe workspaceDzenCmd
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
         {   terminal                = "urxvtc"
@@ -296,7 +302,7 @@ main = do
         ,   layoutHook              = myLayout
         ,   manageHook              = myManageHook <+> manageDocks <+> (doF W.swapDown)
         ,   handleEventHook         = fullscreenEventHook
-        ,   startupHook             = myStartupHook
+        ,   startupHook             = myStartupHook screens
         ,   logHook                 = do
                 dynamicLogWithPP $ myDzenPP workspaceBar
                 fadeInactiveLogHook 1.0
