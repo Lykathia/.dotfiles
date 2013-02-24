@@ -1,4 +1,3 @@
-import System.Directory (getHomeDirectory)
 import System.FilePath ((</>))
 import System.IO
 import System.IO.Unsafe
@@ -40,7 +39,8 @@ import XMonad.Util.Run (hPutStrLn, spawnPipe)
 ---------------------------------------------------------------------
 
 -- Helper Functoin for Icons
--- TODO: Extract workspace so layout icons can also use
+dzenIcon :: String -> String
+dzenIcon icon = "^i(" ++ unsafePerformIO getXMonadDir </> "icons" </> icon ++ ") "
 
 -- Workspace Names
 allWorkspaces, staticWorkspaces :: [WorkspaceId]
@@ -56,9 +56,7 @@ allWorkspaces =
     ,   workspace "" "VM"
     ]
     where
-        workspace image text = unsafePerformIO $ do
-            homeDir <- getHomeDirectory
-            return ("^i(" ++ homeDir </> ".xmonad/icons" </> image ++ ") " ++ text)
+        workspace image text = dzenIcon image ++ text
 
 staticWorkspaces = []
 
@@ -250,7 +248,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
  
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "killall dzen2 trayer nm-applet; xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn "killall dzen2 trayer; xmonad --recompile && xmonad --restart")
     ]
     ++
  
@@ -278,7 +276,6 @@ spawnTrayer n
 myStartupHook :: Int -> X ()
 myStartupHook n = do
     spawn $ spawnTrayer n
-    spawn "nm-applet"
     spawn tempDzen1
     spawn tempDzen2
     setWMName "LG3D"

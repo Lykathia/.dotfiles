@@ -25,7 +25,7 @@ mkdir -p $HOME/.xmonad/icons
 
 # Move icons for xmonad
 for file in $DOTFILES/icons/*/*.xbm; do
-    ln -s $file $HOME/.xmonad/icons/$(basename "$file").xbm
+    ln -s $file $HOME/.xmonad/icons/$(basename "$file")
 done
 ln -s $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs
 
