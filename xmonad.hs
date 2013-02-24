@@ -64,7 +64,7 @@ staticWorkspaces = []
 workspaceDzenCmd :: String
 workspaceDzenCmd = "dzen2 -dock -y -1 -ta l -p -e ''"
 tempDzen1 = "dzen2 -xs 0 -dock -ta l -p -e ''"
-tempDzen2 = "while true; do date; sleep 1; done | dzen2 -xs 1 -dock -ta r -p -e ''"
+tempDzen2 = "conky -qc /home/freyr/.dotfiles/conky/dzen_tr.rc | dzen2 -xs 1 -dock -ta r -p -e ''"
 
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
@@ -276,7 +276,7 @@ spawnTrayer n
 myStartupHook :: Int -> X ()
 myStartupHook n = do
     spawn $ spawnTrayer n
-    spawn tempDzen1
+    --spawn tempDzen1
     spawn tempDzen2
     setWMName "LG3D"
     setDefaultCursor xC_left_ptr 
