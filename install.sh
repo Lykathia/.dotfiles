@@ -14,6 +14,9 @@ DOTFILES=$HOME/.dotfiles
 # xmonad
 # tmux
 # urxvt
+# dzen2
+# conky
+# dmenu
 
 #--------------------------------------------------------------------
 #   Xmonad
