@@ -58,7 +58,7 @@ allWorkspaces =
     where
         workspace image text = unsafePerformIO $ do
             homeDir <- getHomeDirectory
-            return ("^i(" ++ homeDir </> "configs/icons/sm4tik" </> image ++ ") " ++ text)
+            return ("^i(" ++ homeDir </> ".xmonad/icons" </> image ++ ") " ++ text)
 
 staticWorkspaces = []
 
