@@ -1,26 +1,35 @@
-# Install some nice/required programs if we don't have them on the system...
-# Required
-# zsh
+#!/bin/bash
+
+#--------------------------------------------------------------------
+#   Setup
+#--------------------------------------------------------------------
+DOTFILES=$HOME/.dotfiles
+
+#--------------------------------------------------------------------
+#   Program Installs / Requirements Setup
+#--------------------------------------------------------------------
 # vim
-
-# Optional
-# if mpd : ncmpcpp
+# zsh
 # htop
+# xmonad
+# tmux
+# urxvt
 
+#--------------------------------------------------------------------
+#   Xmonad
+#--------------------------------------------------------------------
+mkdir -p $HOME/.xmonad/icons
 
-# Xmonad
-#if not $HOME/xmonad
-mkdir $HOME/.xmonad
-ln -s $HOME/.xmonad/xmonad.hs $HOME/.dotfiles/xmonad.hs
-
-mkdir $HOME/.xmonad/icons
 # Move icons for xmonad
-for file in $HOME/.dotfiles/icons/*/*.xbm; do
+for file in $DOTFILES/icons/*/*.xbm; do
     ln -s $file $HOME/.xmonad/icons/$(basename "$file").xbm
 done
+ln -s $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs
 
-# Dotfiles
-ln -s $HOME/.dotfiles/vim/.vimrc $HOME/.vimrc
-ln -s $HOME/.dotfiles/xorg/xinitrc $HOME/.xinitrc
-ln -s $HOME/.dotfiles/xorg/Xresources $HOME/.Xresources
-ln -s $HOME/.dotfiles/zshrc $HOME/.zshrc
+#--------------------------------------------------------------------
+#   Dotfiles
+#--------------------------------------------------------------------
+ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
+ln -s $DOTFILES/xorg/xinitrc $HOME/.xinitrc
+ln -s $DOTFILES/xorg/Xresources $HOME/.Xresources
+ln -s $DOTFILES/zshrc $HOME/.zshrc
