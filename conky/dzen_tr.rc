@@ -1,0 +1,8 @@
+background no
+out_to_console yes
+out_to_x no
+update_interval 1
+update_interval_on_battery 1
+
+TEXT
+^ca(1,/home/freyr/.dotfiles/conky/dzen_cal.sh)^fg(\#556c85)^i(/home/freyr/.xmonad/icons/clock.xbm) ^fg(\#ffffff)${time %I:%M %P}^ca()
