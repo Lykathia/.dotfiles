@@ -21,6 +21,8 @@ SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
 # Keybinds
+typeset -A key
+
 key[Home]=${terminfo[khome]}
 key[End]=${terminfo[kend]}
 key[Insert]=${terminfo[kich1]}
@@ -40,6 +42,17 @@ key[PageDown]=${terminfo[knp]}
 [[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    history-beginning-search-forward
 [[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
 [[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
+
+if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
+    function zle-line-init () {
+        printf '%s' ${terminfo[smkx]}
+    }
+    function zle-line-finish () {
+        printf '%s' ${terminfo[rmkx]}
+    }
+    zle -N zle-line-init
+    zle -N zle-line-finish
+fi
 
 bindkey '^R' history-incremental-search-backward
 
