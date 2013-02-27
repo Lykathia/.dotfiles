@@ -176,7 +176,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
  
     -- dmenu
-    , ((modm,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    , ((modm,               xK_p     ), spawn "dmenu_run")
+
+    -- uzbl
+    , ((modm,               xK_b     ), spawn "uzbl-tabbed")
 
     -----------------------------------------------------------------
     --  Global Controls 
