@@ -1,8 +1,7 @@
 # Initialization
-autoload -U colors compinit promptinit
-colors
-compinit
-promptinit
+autoload -U colors && colors
+autoload -U promptinit && promptinit
+autoload -U compinit && compinit
 
 # Set Editor
 export EDITOR='vim'
@@ -20,39 +19,19 @@ HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.zsh_history
 
-# Keybinds
-typeset -A key
-
-key[Home]=${terminfo[khome]}
-key[End]=${terminfo[kend]}
-key[Insert]=${terminfo[kich1]}
-key[Delete]=${terminfo[kdch1]}
-key[Up]=${terminfo[kcuu1]}
-key[Down]=${terminfo[kcud1]}
-key[Left]=${terminfo[kcub1]}
-key[Right]=${terminfo[kcuf1]}
-key[PageUp]=${terminfo[kpp]}
-key[PageDown]=${terminfo[knp]}
-
-[[ -n "${key[Home]}"    ]]  && bindkey  "${key[Home]}"    beginning-of-line
-[[ -n "${key[End]}"     ]]  && bindkey  "${key[End]}"     end-of-line
-[[ -n "${key[Insert]}"  ]]  && bindkey  "${key[Insert]}"  overwrite-mode
-[[ -n "${key[Delete]}"  ]]  && bindkey  "${key[Delete]}"  delete-char
-[[ -n "${key[Up]}"      ]]  && bindkey  "${key[Up]}"      history-beginning-search-backward
-[[ -n "${key[Down]}"    ]]  && bindkey  "${key[Down]}"    history-beginning-search-forward
-[[ -n "${key[Left]}"    ]]  && bindkey  "${key[Left]}"    backward-char
-[[ -n "${key[Right]}"   ]]  && bindkey  "${key[Right]}"   forward-char
-
-if (( ${+terminfo[smkx]} )) && (( ${+terminfo[rmkx]} )); then
-    function zle-line-init () {
-        printf '%s' ${terminfo[smkx]}
-    }
-    function zle-line-finish () {
-        printf '%s' ${terminfo[rmkx]}
-    }
-    zle -N zle-line-init
-    zle -N zle-line-finish
-fi
+# Keybindings
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[7~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[8~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\e[5D" backward-word
+bindkey "\ee[C" forward-word
+bindkey "\ee[D" backward-word
 
 bindkey '^R' history-incremental-search-backward
 
