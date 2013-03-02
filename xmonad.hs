@@ -172,9 +172,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -----------------------------------------------------------------
     --  Programs
     -----------------------------------------------------------------
-    -- terminal
+    -- terminal / tmux
     [ ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf)
- 
+    , ((modm .|. shiftMask, xK_backslash), spawn "urxvtc -e tmux")
+
     -- dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
 
