@@ -32,6 +32,8 @@ ln -s $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs
 #--------------------------------------------------------------------
 #   Dotfiles
 #--------------------------------------------------------------------
+mkdir -p $HOME/.ncmpcpp/
+
 ln -s $DOTFILES/vim/.vimrc $HOME/.vimrc
 ln -s $DOTFILES/xorg/xinitrc $HOME/.xinitrc
 ln -s $DOTFILES/xorg/Xresources $HOME/.Xresources
