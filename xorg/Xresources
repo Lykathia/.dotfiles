@@ -23,16 +23,23 @@ dzen2.foreground:               #ededeb
 !--------------------------------------------------------------------
 
 URxvt.termName:                 rxvt-unicode-256color
+URxvt.internalBorder:           5
+URxvt.externalBorder:           0
+URxvt.depth:                    32
+URxvt.background:               rgba:0000/0000/0000/aaaa
+
 URxvt*font:                     xft:Inconsolata:size=10
 URxvt*boldFont:                 xft:Inconsolata:size=10
+URxvt*colorMode:                on
+URxvt*cursorBlink:              false
+URxvt*cursorUnderline:          false
+URxvt*tranparent:               true
+URxvt*shading:                  20
 *URxvt.geometry:                80x25
 *URxvt.saveLines:               14000
 *URxvt.externalBorder:          0
 *URxvt.internalBorder:          0
  
-URxvt.depth:                    32
-URxvt.background:               rgba:0000/0000/0000/aaaa
-urxvt_drop*shading:             40
 *URxvt.mouseWheelScrollPage:    false
 *URxvt.scrollTtyKeypress:       true
 *URxvt.scrollWithBuffer:        false
@@ -45,15 +52,11 @@ urxvt_drop*shading:             40
 *URxvt.cursorColor2:            black
 *URxvt.cursorBlink:             false
 *URxvt.perl-ext-common:         default,matcher,clipboard
-*URxvt.urlLauncher:             /usr/bin/dwb
+*URxvt.urlLauncher:             /usr/bin/uzbl-browser
 *URxvt.keysym.Control-x:        perl:clipboard:copy
 *URxvt.keysym.Control-v:        perl:clipboard:paste
 *URxvt.matcher.button:          1
 *URxvt.underlineURLs:           true
-URxvt*colorMode:                on
-URxvt*cursorBlink:              false
-URxvt*cursorUnderline:          false
-
 !--------------------------------------------------------------------
 !   Cursor
 !--------------------------------------------------------------------
@@ -92,4 +95,3 @@ Xcursor.theme:  left_ptr
 ! white
 *color7:  #a8a8a8
 *color15: #f0f0f0
-

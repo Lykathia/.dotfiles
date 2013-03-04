@@ -75,7 +75,14 @@ myDzenPP h = dzenPP
     ,   ppHiddenNoWindows   = dzenColor colourGray      colourBlack . pad
     ,   ppUrgent            = dzenColor colourGreen     colourBlack . pad
     ,   ppTitle             = dzenColor colourWhiteAlt  colourBlack . pad . titleText . dzenEscape
-    ,   ppLayout            = dzenColor colourBlue      colourBlack . pad . clickableLayout
+    ,   ppLayout            = dzenColor colourBlue      colourBlack . pad . clickableLayout . 
+        (\x -> dzenIcon $ case x of
+            "A" -> "fox.xbm"
+            "G" -> "pacman.xbm"
+            "F" -> "full.xbm"
+            "C" -> "play.xbm"
+            "S" -> "cpu.xbm"
+        )
     ,   ppOrder             = \(ws:l:t:_) -> [l,ws,t]
     ,   ppSep               = "^fg(" ++ colourGray ++ ")|"
     ,   ppWsSep             = ""
@@ -145,16 +152,17 @@ myManageHook = composeAll . concat $
 --  Layouts
 ---------------------------------------------------------------------
 
--- Layouts
-tiledLayout     = renamed [Replace "A"] $ smartBorders $ ResizableTall 1 0.03 0.5 []
+-- General Layouts
+tiledLayout     = renamed [Replace "A"] $ spacing 5 $ smartBorders $ ResizableTall 1 0.03 0.5 []
 gridLayout      = renamed [Replace "G"] $ smartBorders $ spacing 5 $ Grid
 fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
+
+-- Special Layouts
 chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
 steamLayout     = renamed [Replace "S"] $ withIM (0.15) (Title "Friends") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
 myLayout = avoidStruts 
-    -- $ onWorkspace (allWorkspaces !! 1) webLayout
     $ onWorkspace (allWorkspaces !! 2) chatLayout
     $ onWorkspace (allWorkspaces !! 7) steamLayout
     $ allLayouts
