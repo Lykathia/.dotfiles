@@ -24,3 +24,8 @@ set si
 set nobackup
 set nowb
 set noswapfile
+
+" Pathogen
+let g:pathogen_disabled = ['pathogen']
+execute pathogen#infect()
+filetype plugin indent on
