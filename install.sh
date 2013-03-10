@@ -17,6 +17,10 @@ DOTFILES=`pwd`
 # dzen2
 # conky
 # dmenu
+# ctags
+
+git submodule init
+git submodule update
 
 #--------------------------------------------------------------------
 #   Xmonad
@@ -33,6 +37,7 @@ ln -s $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs
 #   Dotfiles
 #--------------------------------------------------------------------
 mkdir -p $HOME/.ncmpcpp/
+ln -s $DOTFILES/vim $HOME/.vim
 
 ln -s $DOTFILES/tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/vim/vimrc $HOME/.vimrc

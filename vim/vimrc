@@ -1,3 +1,8 @@
+" Pathogen
+let g:pathogen_disabled = ['pathogen']
+execute pathogen#infect()
+filetype plugin indent on
+
 " Ignored Compiled Files
 set wildignore=*.o,*~,*.pyc
 
@@ -25,7 +30,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" Pathogen
-let g:pathogen_disabled = ['pathogen']
-execute pathogen#infect()
-filetype plugin indent on
+" Keybinds
+map <C-n> :NERDTreeToggle<CR>
+map <C-m> :TagbarToggle<CR>
