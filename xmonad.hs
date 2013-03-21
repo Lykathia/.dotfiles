@@ -64,7 +64,7 @@ staticWorkspaces = []
 workspaceDzenCmd :: String
 workspaceDzenCmd = "dzen2 -dock -y -1 -ta l -p -e ''"
 tempDzen1 = "dzen2 -xs 0 -dock -ta l -p -e ''"
-tempDzen2 = "conky -qc /home/freyr/.dotfiles/conky/dzen_tr.rc | dzen2 -xs 1 -dock -ta r -p -e ''"
+tempDzen2 = "conky -qc /home/freyr/.dotfiles/conky/dzen_tr.rc | dzen2 -dock -ta r -p -e ''"
 
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
@@ -158,7 +158,7 @@ gridLayout      = renamed [Replace "G"] $ smartBorders $ spacing 5 $ Grid
 fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
 
 -- Special Layouts
-chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Mirror $ ResizableTall 1 0.03 0.5 []
+chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Grid
 steamLayout     = renamed [Replace "S"] $ withIM (0.15) (Title "Friends") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
@@ -186,6 +186,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- dmenu
     , ((modm,               xK_p     ), spawn "dmenu_run")
+
+    -- slock
+    , ((mod4Mask,           xK_l    ),  spawn "slock")
 
     -- uzbl
     , ((modm,               xK_b     ), spawn "uzbl-tabbed")
@@ -283,7 +286,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 spawnTrayer :: Int -> String
 spawnTrayer n
     | n == 1 = "trayer --edge bottom --align right --height 16 --width 10 --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 0 --tint 0x0c0c0b"
-    | n == 2 = "trayer --edge bottom --align right --SetDockType true --SetPartialStrut false --expand true --width 10 --transparent true --alpha 0 --tint 0x0c0c0b --height 16 --monitor 1"
+    | n == 2 = "trayer --edge bottom --align right --height 16 --width 10 --expand true --SetDockType true --SetPartialStrut false --transparent true --alpha 0 --tint 0x0c0c0b"
 
 myStartupHook :: Int -> X ()
 myStartupHook n = do
