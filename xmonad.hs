@@ -51,8 +51,8 @@ allWorkspaces =
     ,   workspace "mem.xbm" "CODE"
     ,   workspace "mem.xbm" "CODE 2"
     ,   workspace "" "TEMP"
-    ,   workspace "" "TEMP 2"
     ,   workspace "" "STEAM"
+    ,   workspace "mail.xbm" "MAIL"
     ,   workspace "" "VM"
     ]
     where

@@ -1,0 +1,30 @@
+[general]
+accounts = work
+maxsyncaccounts = 1
+
+[Account work]
+localrepository = local
+remoterepository = remote
+autorefresh = 2
+
+[Repository local]
+type = Maildir
+localfolders = ~/.mutt/mail/work
+
+[Repository remote]
+type = IMAP
+remotehost = exchcas1.int.pason.com
+ssl = yes
+cert_fingerprint = 2741f0de88dca8b0fa824148dce58ca00348b98a
+remoteport = 993
+remoteuser = elowry
+remotepassfile = ~/.mutt/accounts/imap.password
+keepalive = 60
+holdconnectionopen = yes
+folderfilter = lambda foldername: foldername not in [
+    'Deleted Items',
+    'Contacts',
+    'Conversation History',
+    'Calendar',
+    'Trash']
+

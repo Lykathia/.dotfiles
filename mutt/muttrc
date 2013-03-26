@@ -1,0 +1,34 @@
+# -------------------------------------------------------------------
+#   Source files
+# -------------------------------------------------------------------
+set signature="~/.mutt/accounts/signature"
+
+# -------------------------------------------------------------------
+#   Mbox settings
+# -------------------------------------------------------------------
+set mbox_type=Maildir
+set folder="~/.mutt/mail"
+set spoolfile="~/.mutt/mail/work/INBOX"
+set postponed="+Drafts"
+set record="+work/Sent"
+
+# -------------------------------------------------------------------
+#   Folders
+# -------------------------------------------------------------------
+mailboxes `echo -n "+ "; for file in ~/.mutt/mail/*; do box=$(basename "$file"); echo -n "\"+$box\" "; done`
+
+
+auto_view text/html
+bind index "\Ca" 'imap-fetch-mail'
+set indent_str="> "
+set editor="/usr/bin/vim"
+set beep_new=yes
+ignore *
+unignore from: to: cc: date: subject
+hdr_order from: to: cc: date: subject
+
+# -------------------------------------------------------------------
+#   Email accounts
+# -------------------------------------------------------------------
+source ~/.mutt/accounts/pason
+set sendmail='/usr/bin/msmtp -a pason'
