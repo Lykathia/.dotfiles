@@ -33,3 +33,4 @@ set noswapfile
 " Keybinds
 map <C-n> :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>
+cmap w!! w !sudo tee > /dev/null %
