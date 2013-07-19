@@ -30,6 +30,10 @@ set nobackup
 set nowb
 set noswapfile
 
+" Mutt settings
+au BufRead /tmp/mutt-* set tw=72
+au BufRead /tmp/mutt-* set fo+=aw
+
 " Keybinds
 map <C-n> :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>

@@ -164,7 +164,7 @@ steamLayout     = renamed [Replace "S"] $ withIM (0.15) (Title "Friends") $ Mirr
 -- Hook
 myLayout = avoidStruts 
     $ onWorkspace (allWorkspaces !! 2) chatLayout
-    $ onWorkspace (allWorkspaces !! 7) steamLayout
+    $ onWorkspace (allWorkspaces !! 6) steamLayout
     $ allLayouts
     where
         allLayouts = tiledLayout ||| gridLayout ||| fullLayout

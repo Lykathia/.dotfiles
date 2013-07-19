@@ -5,4 +5,6 @@ update_interval 1
 update_interval_on_battery 1
 
 TEXT
-^ca(1,/home/freyr/.dotfiles/conky/dzen_cal.sh)^fg(\#556c85)^i(/home/freyr/.xmonad/icons/clock.xbm) ^fg(\#ffffff)${time %I:%M %P}^ca()
+^ca(1,/home/freyr/.dotfiles/conky/dzen_hardware.sh)   ^fg(\#636e74)${execi 2 /home/freyr/.dotfiles/conky/bar_ram.sh}^fg(\#bea492)   ^ca()\
+^ca(1,/home/freyr/.dotfiles/conky/dzen_cal.sh)^fg(\#556c85)^i(/home/freyr/.xmonad/icons/clock.xbm) ^fg(\#ffffff)${time %I:%M %P} ^ca()\
+^ca(1,/home/freyr/.dotfiles/conky/dzen_log.sh)^fg(\#626262)^i(/home/freyr/.xmonad/icons/info_03.xbm)^fg(\#bea492)^ca()

@@ -23,6 +23,7 @@ dzen2.foreground:               #ededeb
 !--------------------------------------------------------------------
 
 URxvt.termName:                 rxvt-unicode-256color
+URxvt.urgentOnBell:             true
 URxvt.internalBorder:           5
 URxvt.externalBorder:           0
 URxvt.depth:                    32
