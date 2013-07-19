@@ -34,6 +34,11 @@ set noswapfile
 au BufRead /tmp/mutt-* set tw=72
 au BufRead /tmp/mutt-* set fo+=aw
 
+" CtrlP Settings
+let g:ctrlp_custom_ignore = {
+  \ 'dir': '\v[\/]\.(git|hg|svn)$',
+  \}
+
 " Keybinds
 map <C-n> :NERDTreeToggle<CR>
 map <C-m> :TagbarToggle<CR>
