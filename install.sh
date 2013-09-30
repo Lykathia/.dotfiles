@@ -45,5 +45,6 @@ ln -s $DOTFILES/vim/vimrc $HOME/.vimrc
 ln -s $DOTFILES/xorg/xinitrc $HOME/.xinitrc
 ln -s $DOTFILES/xorg/Xresources $HOME/.Xresources
 ln -s $DOTFILES/zshrc $HOME/.zshrc
+ln -s $DOTFILES/zshenv $HOME/.zshenv
 ln -s $DOTFILES/mutt/muttrc $HOME/.muttrc
 ln -s $DOTFILES/mutt/offlineimaprc $HOME/.offlineimaprc
