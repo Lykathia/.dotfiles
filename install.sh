@@ -12,11 +12,12 @@ DOTFILES=`pwd`
 # zsh
 # htop
 # xmonad
+## dmenu
+## xdotool
+## dzen2
 # tmux
 # urxvt
-# dzen2
 # conky
-# dmenu
 # ctags
 
 git submodule init
