@@ -4,6 +4,8 @@ import System.IO.Unsafe
 import System.Exit
 
 import Data.Char (chr)
+import Data.List (elemIndex)
+import Data.Maybe (fromJust)
 
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
@@ -69,11 +71,11 @@ tempDzen2 = "conky -qc /home/freyr/.dotfiles/conky/dzen_tr.rc | dzen2 -dock -ta 
 -- Formatting for dzen
 myDzenPP :: Handle -> PP
 myDzenPP h = dzenPP
-    {   ppCurrent           = dzenColor colourRed       colourBlack . pad
-    ,   ppVisible           = dzenColor colourBlue      colourBlack . pad
-    ,   ppHidden            = dzenColor colourWhiteAlt  colourBlack . pad
-    ,   ppHiddenNoWindows   = dzenColor colourGray      colourBlack . pad
-    ,   ppUrgent            = dzenColor colourGreen     colourBlack . pad
+    {   ppCurrent           = dzenColor colourRed       colourBlack . pad . clickableWorkspace
+    ,   ppVisible           = dzenColor colourBlue      colourBlack . pad . clickableWorkspace
+    ,   ppHidden            = dzenColor colourWhiteAlt  colourBlack . pad . clickableWorkspace
+    ,   ppHiddenNoWindows   = dzenColor colourGray      colourBlack . pad . clickableWorkspace
+    ,   ppUrgent            = dzenColor colourGreen     colourBlack . pad . clickableWorkspace
     ,   ppTitle             = dzenColor colourWhiteAlt  colourBlack . pad . titleText . dzenEscape
     ,   ppLayout            = dzenColor colourBlue      colourBlack . pad . clickableLayout . 
         (\x -> dzenIcon $ case x of
@@ -92,7 +94,8 @@ myDzenPP h = dzenPP
         titleText [] = "Desktop"
         titleText x = (shorten 82 x)
         clickableLayout x = "^ca(1,xdotool key alt+space)" ++ x ++ "^ca()"
-        clickableWorkspace x y = ""
+        clickableWorkspace ws = "^ca(1,xdotool key alt+" ++ index ++ ")" ++ ws ++ "^ca()" where
+            index = show $ 1 + (fromJust $ elemIndex ws allWorkspaces)
 
 ---------------------------------------------------------------------
 --  Colours / Fonts / Appearance
@@ -106,6 +109,9 @@ delimChar :: Char
 delimChar = chr 127
 
 -- Color Definitions
+-- TODO: This is terrible and colours should be named around what they
+-- represent, so entire themes can change while the colour variables
+-- remain the same.
 colourBlack     = "#020202"
 colourBlackAlt  = "#1c1c1c"
 colourGray      = "#444444"
@@ -263,7 +269,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
  
     -- Restart xmonad
-    , ((modm              , xK_q     ), spawn "killall dzen2 trayer; xmonad --recompile && xmonad --restart")
+    , ((modm              , xK_q     ), spawn "xmonad --recompile && killall dzen2 trayer && xmonad --restart")
     ]
     ++
  
