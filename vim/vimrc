@@ -4,7 +4,7 @@ execute pathogen#infect()
 filetype plugin indent on
 
 " Ignored Compiled Files
-set wildignore=*.o,*~,*.pyc
+set wildignore=*.o,*~,*.pyc,*.class
 
 " Search stuff
 set ignorecase
