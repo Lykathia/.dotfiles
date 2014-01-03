@@ -6,6 +6,11 @@ filetype plugin indent on
 " Ignored Compiled Files
 set wildignore=*.o,*~,*.pyc,*.class
 
+" Statusbar stuff / vim-airline
+set laststatus=2
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+
 " Search stuff
 set ignorecase
 set hlsearch
@@ -30,14 +35,15 @@ set nobackup
 set nowb
 set noswapfile
 
+" Auto reload files on disk
+set autoread
+
 " Mutt settings
 au BufRead /tmp/mutt-* set tw=72
 au BufRead /tmp/mutt-* set fo+=aw
 
 " CtrlP Settings
-let g:ctrlp_custom_ignore = {
-  \ 'dir': '\v[\/]\.(git|hg|svn)$',
-  \}
+let g:ctrlp_custom_ignore = '\v%(/\.%(git|hg|svn)|\.%(class|o|png|jpg|jpeg|bmp|tar|jar|tgz|deb|zip)$|/target/)'
 
 " Python-Mode settings
 let g:pymode_rope = 1

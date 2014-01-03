@@ -22,3 +22,6 @@
 [submodule "vim/bundle/vim-scala"]
 	path = vim/bundle/vim-scala
 	url = git://github.com/derekwyatt/vim-scala.git
+[submodule "vim/bundle/vim-airline"]
+	path = vim/bundle/vim-airline
+	url = git://github.com/bling/vim-airline
