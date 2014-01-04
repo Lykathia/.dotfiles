@@ -1,7 +1,6 @@
 " Pathogen
 let g:pathogen_disabled = ['pathogen']
 execute pathogen#infect()
-filetype plugin indent on
 
 " The most important of keybinds
 let mapleader = ","
@@ -30,6 +29,7 @@ set nocursorline
 set nocursorcolumn
 
 " Tab stuff
+filetype plugin indent on
 set expandtab
 set smarttab
 set shiftwidth=4
@@ -38,6 +38,8 @@ set lbr
 set tw=500
 set ai
 set si
+set wildmenu
+set wildmode=longest:full,full
 
 " Get rid of swap files
 set nobackup
@@ -59,5 +61,15 @@ map <leader>b :CtrlPBuffer<CR>
 let g:pymode_rope = 1
 let g:pymode_folding = 0
 
+" HTML and XML should only have 2 spaces
+au FileType html :setlocal sw=2 ts=2
+au FileType xml :setlocal sw=2 ts=2
+
+" Gradle
+au BufNewFile,BufRead *.gradle setf groovy
+
 " Keybinds
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+map <C-Tab> :bnext<cr>
+map <C-S-Tab> :bprevious<cr>
+map <leader>gb :Gblame<cr>
