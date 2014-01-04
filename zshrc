@@ -49,9 +49,10 @@ alias pacman='sudo pacman'
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
-    alias top='htop'
+    alias top='htop' # Use htop instead of top when available
 fi
-alias grep='grep -i'
+alias grep='grep -i' # Case insensative
+alias cdp='cd $(git rev-parse --show-toplevel)' # cd to project root
 
 # Grep stuffs
 export GREP_OPTIONS='--color=auto'
