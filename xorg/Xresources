@@ -22,7 +22,7 @@ dzen2.foreground:               #ededeb
 !   urxvt
 !--------------------------------------------------------------------
 
-URxvt.termName:                 rxvt-unicode-256color
+URxvt.termName:                 rxvt-256color
 URxvt.urgentOnBell:             true
 URxvt.internalBorder:           5
 URxvt.externalBorder:           0
@@ -34,8 +34,6 @@ URxvt*boldFont:                 xft:Inconsolata:size=10
 URxvt*colorMode:                on
 URxvt*cursorBlink:              false
 URxvt*cursorUnderline:          false
-URxvt*tranparent:               true
-URxvt*shading:                  20
 *URxvt.geometry:                80x25
 *URxvt.saveLines:               14000
 *URxvt.externalBorder:          0

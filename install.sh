@@ -19,6 +19,8 @@ DOTFILES=`pwd`
 # urxvt
 # conky
 # ctags
+# xcompmgr
+# hsetroot
 
 git submodule init
 git submodule update
