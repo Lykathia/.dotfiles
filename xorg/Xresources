@@ -38,7 +38,7 @@ URxvt*cursorUnderline:          false
 *URxvt.saveLines:               14000
 *URxvt.externalBorder:          0
 *URxvt.internalBorder:          0
- 
+
 *URxvt.mouseWheelScrollPage:    false
 *URxvt.scrollTtyKeypress:       true
 *URxvt.scrollWithBuffer:        false
@@ -67,30 +67,5 @@ Xcursor.theme:  left_ptr
 !   Colours
 !--------------------------------------------------------------------
 
-*background: #020202
-*foreground: #999999
-
-! black
-*color0:  #282a2b
-*color8:  #2c2f30
-! red
-*color1:  #ac357e
-*color9:  #df45a4
-! green
-*color2:  #65ac35
-*color10: #83df45
-! yellow
-*color3:  #a8ac35
-*color11: #dadf45
-! blue
-*color4:  #273a87
-*color12: #3955c4
-! magenta
-*color5:  #666699
-*color13: #8888cc
-! cyan
-*color6:  #8caff0
-*color14: #9bbaf1
-! white
-*color7:  #a8a8a8
-*color15: #f0f0f0
+! TODO: Clean this hardlink up
+#include "/home/freyr/.colours/jellybeans"
