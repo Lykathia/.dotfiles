@@ -49,6 +49,9 @@ set noswapfile
 " Auto reload files on disk
 set autoread
 
+" Trailing spaces suck
+autocmd FileType c,cpp,java,scala,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+
 " Mutt settings
 au BufRead /tmp/mutt-* set tw=72
 au BufRead /tmp/mutt-* set fo+=aw
@@ -61,8 +64,9 @@ map <leader>b :CtrlPBuffer<CR>
 let g:pymode_rope = 1
 let g:pymode_folding = 0
 
-" HTML and XML should only have 2 spaces
+" Webby stuff should only have 2 spaces
 au FileType html :setlocal sw=2 ts=2
+au FileType javascript :setlocal sw=2 ts=2
 au FileType xml :setlocal sw=2 ts=2
 
 " Gradle
