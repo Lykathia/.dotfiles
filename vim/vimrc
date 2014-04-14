@@ -60,13 +60,21 @@ au BufRead /tmp/mutt-* set fo+=aw
 let g:ctrlp_custom_ignore = '\v%(/\.%(git|hg|svn)|\.%(class|o|png|jpg|jpeg|bmp|tar|jar|tgz|deb|zip)$|/%(target|build)/)'
 map <leader>b :CtrlPBuffer<CR>
 
+" Syntastic Settings
+let g:syntastic_mode_map = {
+\   'mode': 'active',
+\   'active_filetypes': [],
+\   'passive_filetypes': ['python', 'scala']
+\}
+
 " Python-Mode settings
 let g:pymode_rope = 1
 let g:pymode_folding = 0
 
-" Webby stuff should only have 2 spaces
+" Stuff should only have 2 spaces
 au FileType html :setlocal sw=2 ts=2
 au FileType javascript :setlocal sw=2 ts=2
+au FileType scala :setlocal sw=2 ts=2
 au FileType xml :setlocal sw=2 ts=2
 
 " Gradle
