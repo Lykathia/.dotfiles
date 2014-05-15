@@ -43,6 +43,7 @@ mkdir -p $HOME/.ncmpcpp/
 ln -s $DOTFILES/vim $HOME/.vim
 ln -s $DOTFILES/mutt $HOME/.mutt
 ln -s $DOTFILES/fonts $HOME/.fonts
+ln -s $DOTFILES/colours $HOME/.colours
 
 ln -s $DOTFILES/tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/vim/vimrc $HOME/.vimrc
