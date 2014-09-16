@@ -70,8 +70,10 @@ let g:syntastic_mode_map = {
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
 " Python-Mode settings
-let g:pymode_rope = 1
+let g:pymode_rope = 0
 let g:pymode_folding = 0
+let g:pymode_warnings = 0
+let g:pymode_lint_ignore = 'E501'
 
 " Stuff should only have 2 spaces
 au FileType html :setlocal sw=2 ts=2
@@ -81,6 +83,10 @@ au FileType xml :setlocal sw=2 ts=2
 
 " Gradle
 au BufNewFile,BufRead *.gradle setf groovy
+
+" Markdown
+autocmd FileType * unlet! g:airline#extensions#whitespace#checks
+autocmd FileType markdown let g:airline#extensions#whitespace#checks = [ 'indent' ]
 
 " Keybinds
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
