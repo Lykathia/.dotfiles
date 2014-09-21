@@ -46,13 +46,24 @@ RPROMPT="%{$fg_bold[blue]%}%~%{$reset_color%}"
 
 # Aliases
 alias pacman='sudo pacman'
+alias docker='sudo docker'
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
     alias top='htop' # Use htop instead of top when available
 fi
 alias grep='grep -i' # Case insensative
-alias cdp='cd $(git rev-parse --show-toplevel)' # cd to project root
+
+changedir () {
+    svn info &> /dev/null
+    if [ $? -eq 0 ]; then
+        cd `svn info | grep 'Working Copy' | sed 's|Working Copy Root Path: \(.*\)$|\1|g'`
+    else
+        cd $(git rev-parse --show-toplevel)
+    fi
+}
+alias cdp=changedir
+#alias cdp='cd $(git rev-parse --show-toplevel)' # cd to project root
 
 # Grep stuffs
 export GREP_OPTIONS='--color=auto'
