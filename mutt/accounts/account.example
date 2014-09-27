@@ -1,5 +1,0 @@
-set hostname="example.com"
-set realname="Evan Lowry"
-set from="evan.lowry@example.com"
-set hidden_host=yes
-set use_domain=yes
