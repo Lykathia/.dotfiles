@@ -78,6 +78,7 @@ let g:pymode_lint_ignore = 'E501'
 " Stuff should only have 2 spaces
 au FileType html :setlocal sw=2 ts=2
 au FileType javascript :setlocal sw=2 ts=2
+au FileType coffeescript :setlocal sw=2 ts=2
 au FileType scala :setlocal sw=2 ts=2
 au FileType xml :setlocal sw=2 ts=2
 

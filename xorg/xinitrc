@@ -15,13 +15,14 @@ fi
 #--------------------------------------------------------------------
 #   Daemons
 #--------------------------------------------------------------------
+xcompmgr -c &
+sxhkd &
 /usr/bin/urxvtd -q -f -o
 #/usr/bin/mpd ~/.mpd/mpd.conf
 
 #--------------------------------------------------------------------
 #   Programs
 #--------------------------------------------------------------------
-xcompmgr -c &
 nm-applet &
 nautilus --no-desktop -n &
 
@@ -29,6 +30,6 @@ nautilus --no-desktop -n &
 #   WM + Enviroment
 #--------------------------------------------------------------------
 hsetroot -center ~/wallpaper.jpg
-#hsetroot -fill /path/to/background/image
-#setxkbmap us -variant colemak
-exec dbus-launch xmonad
+xsetroot -cursor_name left_ptr
+#exec dbus-launch xmonad
+exec bspwm

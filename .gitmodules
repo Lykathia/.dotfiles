@@ -49,3 +49,6 @@
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = git@github.com:kchmck/vim-coffee-script.git
+[submodule "vim/bundle/vim-sxhkdrc"]
+	path = vim/bundle/vim-sxhkdrc
+	url = git@github.com:baskerville/vim-sxhkdrc.git

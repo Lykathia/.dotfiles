@@ -15,8 +15,8 @@ Xft.rgba:                       rgb
 !--------------------------------------------------------------------
 
 dzen2.font:                     -*-inconsolata-medium-r-*-*-12-*-*-*-*-*-*-*
-dzen2.background:               #0c0c0b
-dzen2.foreground:               #ededeb
+!dzen2.background:               #0c0c0b
+!dzen2.foreground:               #ededeb
 
 !--------------------------------------------------------------------
 !   urxvt
@@ -27,7 +27,6 @@ URxvt.urgentOnBell:             true
 URxvt.internalBorder:           5
 URxvt.externalBorder:           0
 URxvt.depth:                    32
-URxvt.background:               rgba:0000/0000/0000/aaaa
 
 URxvt*font:                     xft:Inconsolata:size=10, xft:Inconsolata for Powerline
 URxvt*boldFont:                 xft:Inconsolata:size=10
@@ -44,7 +43,6 @@ URxvt*cursorUnderline:          false
 *URxvt.scrollWithBuffer:        false
 *URxvt.scrollTtyOutput:         false
 *URxvt.scrollBar:               false
-*URxvt.foreground:              white
 *URxvt.cursorColor:             grey
 *URxvt.highlightColor:          #D8DBE6
 *URxvt.highlightTextColor:      #000000

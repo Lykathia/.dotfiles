@@ -22,6 +22,11 @@ DOTFILES=`pwd`
 # xcompmgr
 # hsetroot
 
+PACMAN="vim zsh htop dmenu xdotool dzen2 tmux ctags xcompmgr conky urxvt weechat trayer"
+AUR="hsetroot typesafe-activator"
+
+# TODO: Loop thru these bitches and install them!
+
 git submodule init
 git submodule update
 
@@ -40,10 +45,15 @@ ln -s $DOTFILES/xmonad.hs $HOME/.xmonad/xmonad.hs
 #   Dotfiles
 #--------------------------------------------------------------------
 mkdir -p $HOME/.ncmpcpp/
+mkdir -p $HOME/.config/
 ln -s $DOTFILES/vim $HOME/.vim
 ln -s $DOTFILES/mutt $HOME/.mutt
 ln -s $DOTFILES/fonts $HOME/.fonts
 ln -s $DOTFILES/colours $HOME/.colours
+
+for folder in $DOTFILES/config/*; do
+    ln -s ${folder} $HOME/.config/`basename ${folder}`
+done
 
 ln -s $DOTFILES/tmux.conf $HOME/.tmux.conf
 ln -s $DOTFILES/vim/vimrc $HOME/.vimrc

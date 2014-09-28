@@ -52,7 +52,7 @@ allWorkspaces =
     ,   workspace "mail.xbm" "CHAT"
     ,   workspace "mem.xbm" "CODE"
     ,   workspace "mem.xbm" "CODE 2"
-    ,   workspace "" "TEMP"
+    ,   workspace "" "MEDIA"
     ,   workspace "" "STEAM"
     ,   workspace "mail.xbm" "MAIL"
     ,   workspace "" "VM"
@@ -146,9 +146,9 @@ myTabTheme = defaultTheme
 myManageHook :: ManageHook
 myManageHook = composeAll . concat $
     [ [ className =? "Xfce4-notifyd" --> doIgnore ]
-    , [ isFullscreen                  --> doFullFloat ]
-    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "1:main"    | x <- my1Shifts ]
-    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "8:steam"   | x <- my1Shifts ]
+    , [ isFullscreen --> (doF W.focusDown <+> doFullFloat <+> doShift "MEDIA") ]
+    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "MAIN"    | x <- my1Shifts ]
+    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "STEAM"   | x <- my8Shifts ]
     ]
     where
         my1Shifts = []
@@ -164,12 +164,14 @@ gridLayout      = renamed [Replace "G"] $ smartBorders $ spacing 5 $ Grid
 fullLayout      = renamed [Replace "F"] $ smartBorders $ tabbedAlways shrinkText myTabTheme
 
 -- Special Layouts
+mediaLayout     = renamed [Replace "M"] $ smartBorders $ Full
 chatLayout      = renamed [Replace "C"] $ withIM (0.15) (Title "Buddy List") $ Grid
 steamLayout     = renamed [Replace "S"] $ withIM (0.15) (Title "Friends") $ Mirror $ ResizableTall 1 0.03 0.5 []
 
 -- Hook
 myLayout = avoidStruts 
     $ onWorkspace (allWorkspaces !! 2) chatLayout
+    $ onWorkspace (allWorkspaces !! 5) mediaLayout
     $ onWorkspace (allWorkspaces !! 6) steamLayout
     $ allLayouts
     where

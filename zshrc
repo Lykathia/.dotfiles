@@ -7,6 +7,9 @@ autoload -U compinit && compinit
 export EDITOR='vim'
 bindkey -v
 
+# Annoying SBT autocomplete
+unsetopt nomatch
+
 # Keep 10000 lines of history within the shell and save it to ~/.zsh_history:
 setopt SHARE_HISTORY
 setopt HIST_IGNORE_DUPS
