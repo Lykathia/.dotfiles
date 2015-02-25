@@ -69,6 +69,8 @@ let g:syntastic_mode_map = {
 
 let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
+let g:syntastic_scala_scalastyle_jar = 'scalastyle_2.11-0.6.0-batch.jar'
+
 " Python-Mode settings
 let g:pymode_rope = 0
 let g:pymode_folding = 0
@@ -78,7 +80,7 @@ let g:pymode_lint_ignore = 'E501'
 " Stuff should only have 2 spaces
 au FileType html :setlocal sw=2 ts=2
 au FileType javascript :setlocal sw=2 ts=2
-au FileType coffeescript :setlocal sw=2 ts=2
+au FileType coffee :setlocal sw=2 ts=2
 au FileType scala :setlocal sw=2 ts=2
 au FileType xml :setlocal sw=2 ts=2
 

@@ -14,13 +14,15 @@ import XMonad
 
 import XMonad.Hooks.DynamicHooks
 import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.EwmhDesktops (ewmh)
 import XMonad.Hooks.FadeInactive (fadeInactiveLogHook)
-import XMonad.Hooks.ManageDocks
-import XMonad.Hooks.ManageHelpers
+import XMonad.Hooks.ManageDocks (avoidStruts, manageDocks, docksEventHook)
+import XMonad.Hooks.ManageHelpers (isFullscreen, doFullFloat)
+import XMonad.Hooks.Place (underMouse, placeHook, inBounds, fixed)
 import XMonad.Hooks.SetWMName
 import XMonad.Hooks.UrgencyHook
 
-import XMonad.Layout.Fullscreen
+import XMonad.Layout.Fullscreen (fullscreenEventHook)
 import XMonad.Layout.Gaps
 import XMonad.Layout.Grid
 import XMonad.Layout.IndependentScreens (countScreens)
@@ -143,16 +145,15 @@ myTabTheme = defaultTheme
 --  Hooks
 ---------------------------------------------------------------------
 
-myManageHook :: ManageHook
-myManageHook = composeAll . concat $
-    [ [ className =? "Xfce4-notifyd" --> doIgnore ]
-    , [ isFullscreen --> (doF W.focusDown <+> doFullFloat <+> doShift "MEDIA") ]
-    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "MAIN"    | x <- my1Shifts ]
-    , [ (className =? x <||> title =? x <||> resource =? x) --> doShift "STEAM"   | x <- my8Shifts ]
+myManageHook = composeAll
+    [ resource =? "dmenu"              --> doFloat
+    , resource =? "feh"                --> doIgnore
+    , resource =? "dzen2"              --> doIgnore
+    , resource =? "bar-aint-recursive" --> doIgnore
+    , className =? "Xfce4-notifyd"     --> doIgnore
+    , isFullscreen                     --> doFullFloat
+    , manageDocks
     ]
-    where
-        my1Shifts = []
-        my8Shifts = ["Steam", "Friends"]
 
 ---------------------------------------------------------------------
 --  Layouts
@@ -265,7 +266,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm,               xK_a     ), spawn "setxkbmap us -variant colemak")
 
     -- Qwerty
-    , ((modm,               xK_z     ), spawn "setxkbmap us")
+    , ((modm,               xK_z     ), spawn "setxkbmap us -variant altgr-intl -option nodeadkeys")
 
     -- Quit xmonad
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess))
@@ -314,14 +315,15 @@ main = do
     screens <- countScreens
     workspaceBar <- spawnPipe workspaceDzenCmd
 
-    xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
+    --xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig
+    xmonad $ ewmh defaultConfig
         {   terminal                = "urxvtc"
         ,   workspaces              = allWorkspaces
 
         -- Hooks / Layouts
         ,   layoutHook              = myLayout
-        ,   manageHook              = myManageHook <+> manageDocks <+> (doF W.swapDown)
-        ,   handleEventHook         = fullscreenEventHook
+        ,   manageHook              = myManageHook <+> manageHook defaultConfig
+        ,   handleEventHook         = fullscreenEventHook <+> docksEventHook
         ,   startupHook             = myStartupHook screens
         ,   logHook                 = do
                 dynamicLogWithPP $ myDzenPP workspaceBar
