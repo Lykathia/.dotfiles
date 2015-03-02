@@ -49,7 +49,6 @@ RPROMPT="%{$fg_bold[blue]%}%~%{$reset_color%}"
 
 # Aliases
 alias pacman='sudo pacman'
-alias docker='sudo docker'
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
