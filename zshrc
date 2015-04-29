@@ -66,6 +66,22 @@ changedir () {
 }
 alias cdp=changedir
 
+# Change scala directory -- swap between main and test dirs, create the
+# corresponding directory if it doesn't exist.
+swapdir () {
+    pwd | grep -oh 'src/main' &> /dev/null
+    if [ $? -eq 0 ]; then
+        cdir=`pwd | sed "s|\/src\/main|\/src\/test|g"`
+    else
+        cdir=`pwd | sed "s|\/src\/test|\/src\/main|g"`
+    fi
+    if [ ! -d $cdir ]; then
+        mkdir -p $cdir
+    fi
+    cd $cdir
+}
+alias csd=swapdir
+
 # Grep stuffs
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
