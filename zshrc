@@ -65,11 +65,14 @@ changedir () {
     fi
 }
 alias cdp=changedir
-#alias cdp='cd $(git rev-parse --show-toplevel)' # cd to project root
 
 # Grep stuffs
 export GREP_OPTIONS='--color=auto'
 export GREP_COLOR='1;32'
+
+# lets kill that annoying grep warning...
+for i (grep egrep fgrep) alias $i="$i $GREP_OPTIONS" ;
+unset GREP_OPTIONS
 
 # Coloured man pages
 man() {
