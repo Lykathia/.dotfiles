@@ -84,6 +84,7 @@ au FileType coffee :setlocal sw=2 ts=2
 au FileType scala :setlocal sw=2 ts=2
 au FileType xml :setlocal sw=2 ts=2
 au FileType dot :setlocal sw=2 ts=2
+au FileType styl :setlocal sw=2 ts=2
 
 " Gradle
 au BufNewFile,BufRead *.gradle setf groovy
