@@ -19,13 +19,17 @@ DOTFILES=`pwd`
 # urxvt
 # conky
 # ctags
-# xcompmgr
+
+# AUR
+# ~~~
+# compton
 # hsetroot
 
-PACMAN="vim zsh htop dmenu xdotool dzen2 tmux ctags xcompmgr conky urxvt weechat trayer"
+PACMAN="vim zsh htop dmenu xdotool dzen2 tmux ctags conky urxvt weechat trayer slock"
 AUR="hsetroot typesafe-activator"
 
 # TODO: Loop thru these bitches and install them!
+# TODO: Automatically install AUR modules as well
 
 git submodule init
 git submodule update
