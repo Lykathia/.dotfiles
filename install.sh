@@ -26,7 +26,7 @@ DOTFILES=`pwd`
 # hsetroot
 
 PACMAN="vim zsh htop dmenu xdotool dzen2 tmux ctags conky urxvt weechat trayer slock"
-AUR="hsetroot typesafe-activator"
+AUR="hsetroot typesafe-activator lemonbar-git compton"
 
 # TODO: Loop thru these bitches and install them!
 # TODO: Automatically install AUR modules as well
@@ -54,4 +54,3 @@ ln -s $DOTFILES/xorg/xinitrc $HOME/.xinitrc
 ln -s $DOTFILES/xorg/Xresources $HOME/.Xresources
 ln -s $DOTFILES/zshrc $HOME/.zshrc
 ln -s $DOTFILES/zshenv $HOME/.zshenv
-ln -s $DOTFILES/mutt/offlineimaprc $HOME/.offlineimaprc
