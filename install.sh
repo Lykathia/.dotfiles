@@ -26,7 +26,7 @@ DOTFILES=`pwd`
 # hsetroot
 
 PACMAN="vim zsh htop dmenu xdotool dzen2 tmux ctags conky urxvt weechat trayer slock"
-AUR="hsetroot typesafe-activator lemonbar-git compton"
+AUR="hsetroot typesafe-activator lemonbar-git compton xtitle-git"
 
 # TODO: Loop thru these bitches and install them!
 # TODO: Automatically install AUR modules as well
