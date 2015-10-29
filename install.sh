@@ -41,7 +41,7 @@ git submodule update
 mkdir -p $HOME/.ncmpcpp/
 mkdir -p $HOME/.config/
 ln -s $DOTFILES/vim $HOME/.vim
-ln -s $DOTFILES/fonts $HOME/.fonts
+ln -s $DOTFILES/fonts $HOME/.local/share/fonts
 ln -s $DOTFILES/colours $HOME/.colours
 
 for folder in $DOTFILES/config/*; do
@@ -54,3 +54,5 @@ ln -s $DOTFILES/xorg/xinitrc $HOME/.xinitrc
 ln -s $DOTFILES/xorg/Xresources $HOME/.Xresources
 ln -s $DOTFILES/zshrc $HOME/.zshrc
 ln -s $DOTFILES/zshenv $HOME/.zshenv
+
+fc-cache -vf
