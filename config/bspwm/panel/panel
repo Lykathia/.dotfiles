@@ -19,11 +19,11 @@ bspc control --subscribe > "$PANEL_FIFO" &
 
 # Text Output Programs
 xtitle -sf 'T%s' > "$PANEL_FIFO" &
-clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
+#clock -sf 'S%a %H:%M' > "$PANEL_FIFO" &
 
 # Run
 cat "$PANEL_FIFO" \
-    | ./panel_bar \
+    | $HOME/.config/bspwm/panel/panel_bar \
     | lemonbar \
         -g "x20" \
         #-f "$PANEL_FONT_FAMILY" \
