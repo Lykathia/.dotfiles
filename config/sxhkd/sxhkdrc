@@ -32,7 +32,8 @@ alt + shift + Return
 alt + p
     dmenu_run
 
-
+super + l
+    slock
 
 
 # TODO: Optimize, copied from windelicato
