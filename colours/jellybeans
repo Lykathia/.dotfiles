@@ -1,6 +1,6 @@
 ! Jellybeans Terminal Colours
 
-urxvt*background: [95]#151515
+urxvt*background: [90]#151515
 
 *background: #151515
 *foreground: #888888
