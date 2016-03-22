@@ -18,11 +18,11 @@ alt + q
 # ~~~~
 # Close window
 alt + shift + c
-    bspc window -c
+    bspc node -c
 
 # Tab thru windows
 alt + Tab
-    bspc window -f last
+    bspc node -f last
 
 # Process Spawning
 # ~~~~
@@ -44,19 +44,19 @@ alt + w
 
 # Close window
 alt + shift + x
-    bspc  window -c
+    bspc node -c
 
 # Kill window
 alt + ctrl + shift + x
-    bspc  window -k
+    bspc node -k
 
 # Toggle tile
 alt + {_,shift +} t
-    bspc window -t {floating,fullscreen}
+    bspc node -t {floating,fullscreen}
 
 # Lock node
 alt + shift + p
-    bspc window -t private
+    bspc node -t private
 
 # Balance tree
 alt + b
@@ -64,19 +64,19 @@ alt + b
 
 # Presel window for splitting
 alt + ctrl + {h,j,k,l}
-    bspc window -p {left,down,up,right}
+    bspc node -p {left,down,up,right}
 
 # Move window into presel position
 alt + shift {a,s,d,f}
-    bspc window -w {left.manual,down.manual,up.manual,right.manual}
+    bspc node -w {left.manual,down.manual,up.manual,right.manual}
 
 # Select windows, or move
 alt + {_,shift + }{h,j,k,l}
-    bspc window -{f,s} {left,down,up,right} || bspc window -f {prev, prev, next, next}
+    bspc node -{f,s} {left,down,up,right} || bspc node -f {prev, prev, next, next}
 
 # Move current window to largest space
 alt + Return
-    bspc window -s biggest
+    bspc node -s biggest
 
 # Mirror and flip leaves of tree
 alt + {comma,period}
@@ -88,23 +88,23 @@ alt + shift + {comma,period}
 
 # Select previous / next desktop
 alt + {p,n}
-    bspc desktop -f {prev.occupied,next.occupied} 
+    bspc desktop -f {prev.occupied,next.occupied}
 
 # Lock a window from closing
 alt + Escape
-    bspc window -t locked 
+    bspc node -t locked
 
 # Toggle monocle
-alt + space 
+alt + space
     bspc desktop -l next
 
 # Toggle pseudotiled (floating in tile)
-alt + shift + space 
-    bspc window -t pseudo_tiled
+alt + shift + space
+    bspc node -t pseudo_tiled
 
 # Focus on floating / tiled
 alt + e
-    bspc window -f {next.floating,next.tiled}
+    bspc node -f {next.floating,next.tiled}
 
 # Change desktop padding
 alt + {_, shift} + bracketright
@@ -132,8 +132,8 @@ alt + {minus,equal}
 
 # Set splitting ratio of windows
 alt + ctrl + {1-9}
-    bspc window -r 0.{1-9}
+    bspc node -r 0.{1-9}
 
 # Focus or move window to desktops
 alt + {_,shift + }{1-9,0}
-    bspc {desktop -f, window -d} $(bspc query -M -m)/{i,ii,iii,iv,v,vi,vii,viii,ix,x}
+    bspc {desktop -f, node -d} $(bspc query -M -m)/{i,ii,iii,iv,v,vi,vii,viii,ix,x}
