@@ -50,7 +50,7 @@ set noswapfile
 set autoread
 
 " Trailing spaces suck
-autocmd FileType c,cpp,java,scala,html autocmd BufWritePre <buffer> :%s/\s\+$//e
+autocmd FileType c,cpp,java,scala,html,coffee autocmd BufWritePre <buffer> :%s/\s\+$//e
 
 " Mutt settings
 au BufRead /tmp/mutt-* set tw=72
