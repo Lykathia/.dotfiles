@@ -24,6 +24,15 @@ alt + shift + c
 alt + Tab
     bspc node -f last
 
+# expand the tiled space in the given direction
+super + alt + {h,j,k,l}
+    bspc node {@west -r -10,@south -r +10,@north -r -10,@east -r +10}
+
+# contract the tiled space in the given direction
+super + alt + shift + {h,j,k,l}
+    bspc node {@east -r -10,@north -r +10,@south -r -10,@west -r +10}
+
+
 # Process Spawning
 # ~~~~
 alt + shift + Return
@@ -60,11 +69,11 @@ alt + shift + p
 
 # Balance tree
 alt + b
-    bspc desktop -B
+    bspc node --balance
 
 # Presel window for splitting
 alt + ctrl + {h,j,k,l}
-    bspc node -p {left,down,up,right}
+    bspc node -p {west,south,north,east}
 
 # Move window into presel position
 alt + shift {a,s,d,f}
