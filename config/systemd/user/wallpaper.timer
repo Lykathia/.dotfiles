@@ -1,0 +1,9 @@
+[Unit]
+Description=Randomize wallpapers every 40 minutes
+
+[Timer]
+OnBootSec=0min
+OnUnitActiveSec=40min
+
+[Install]
+WantedBy=default.target
