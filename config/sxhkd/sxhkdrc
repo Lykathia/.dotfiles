@@ -7,12 +7,12 @@
 # ~~~~
 # Kill X
 alt + shift + q
-    bspc quit 1 && pkill bar && pkill dzen2
+    bspc quit 1 && pkill polybar && pkill dzen2
 
 # Toggle Panels
 alt + q
-    {pkill panel; pkill cat; pkill conky; bspc config top_padding 0 ,\
-    bspc config top_padding 14; $HOME/.config/bspwm/panel/panel & }
+    {pkill polybar; bspc config top_padding 0 ,\
+    bspc config top_padding 20; $HOME/.config/polybar/launch & }
 
 # Window/Tiling Configuration
 # ~~~~
