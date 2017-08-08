@@ -55,6 +55,7 @@ if [ -f /usr/bin/htop ]; then
     alias top='htop' # Use htop instead of top when available
 fi
 alias grep='grep -i' # Case insensative
+alias gitcb='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
 
 changedir () {
     svn info &> /dev/null
