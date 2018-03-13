@@ -58,3 +58,6 @@
 [submodule "vim/pack/git/ale"]
 	path = vim/pack/git/start/ale
 	url = https://github.com/w0rp/ale.git
+[submodule "vim/pack/git/rust"]
+	path = vim/pack/git/rust
+	url = https://github.com/rust-lang/rust.vim
