@@ -20,7 +20,7 @@ Install
 Moving the install portion over to ansible.
 
 ```
-ansible-playbook -s playbook.yml
+ansible-playbook playbook.yml
 ```
 
 Inspiration
