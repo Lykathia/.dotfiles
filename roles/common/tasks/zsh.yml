@@ -4,6 +4,16 @@
     name: zsh
     state: present
 
+- name: install zsh syntax highlighting
+  package:
+    name: zsh-syntax-highlighting
+    state: present
+
+- name: install zsh history search
+  package:
+    name: zsh-history-substring-search
+    state: present
+
 - name: link zsh config
   file:
     src: "{{ role_path }}/files/zshrc"
