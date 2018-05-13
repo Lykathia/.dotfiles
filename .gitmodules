@@ -45,13 +45,13 @@
 	url = git://github.com/tpope/vim-surround
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
-	url = git@github.com:kchmck/vim-coffee-script.git
+	url = git://github.com/kchmck/vim-coffee-script.git
 [submodule "vim/bundle/vim-sxhkdrc"]
 	path = vim/bundle/vim-sxhkdrc
-	url = git@github.com:baskerville/vim-sxhkdrc.git
+	url = git://github.com/baskerville/vim-sxhkdrc.git
 [submodule "vim/bundle/vim-stylus"]
 	path = vim/bundle/vim-stylus
-	url = git@github.com:wavded/vim-stylus.git
+	url = git://github.com/wavded/vim-stylus.git
 [submodule "vim/bundle/typescript-vim"]
 	path = vim/bundle/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git

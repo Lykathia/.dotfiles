@@ -60,17 +60,6 @@ au BufRead /tmp/mutt-* set fo+=aw
 let g:ctrlp_custom_ignore = '\v%(/\.%(git|hg|svn)|\.%(class|o|png|jpg|jpeg|bmp|tar|jar|tgz|deb|zip)$|/%(target|build)/)'
 map <leader>b :CtrlPBuffer<CR>
 
-" Syntastic Settings
-let g:syntastic_mode_map = {
-\   'mode': 'active',
-\   'active_filetypes': [],
-\   'passive_filetypes': ['scala']
-\}
-
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
-
-let g:syntastic_scala_scalastyle_jar = 'scalastyle_2.11-0.6.0-batch.jar'
-
 " Python-Mode settings
 let g:pymode_rope = 0
 let g:pymode_folding = 0
