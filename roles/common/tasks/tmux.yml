@@ -1,0 +1,12 @@
+---
+- name: install tmux
+  package:
+    name: tmux
+    state: present
+
+- name: link tmux.conf
+  file:
+    src: "{{ role_path }}/files/tmux.conf"
+    dest: "{{ ansible_env.HOME }}/.tmux.conf"
+    state: link
+    force: yes

@@ -1,0 +1,4 @@
+---
+- import_tasks: fonts.yml
+- import_tasks: tmux.yml
+- import_tasks: zsh.yml

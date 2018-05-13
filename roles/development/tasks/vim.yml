@@ -1,0 +1,12 @@
+---
+- name: install vim
+  package:
+    name: vim
+    state: present
+
+- name: link vimrc
+  file:
+    src: "{{ role_path }}/files/vimrc"
+    dest: "{{ ansible_env.HOME }}/.vimrc"
+    state: link
+    force: yes

@@ -1,0 +1,12 @@
+---
+- name: install zsh
+  package:
+    name: zsh
+    state: present
+
+- name: link zsh config
+  file:
+    src: "{{ role_path }}/files/zshrc"
+    dest: "{{ ansible_env.HOME }}/.zshrc"
+    state: link
+    force: yes
