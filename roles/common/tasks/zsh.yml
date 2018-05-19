@@ -4,15 +4,18 @@
     name: zsh
     state: present
 
+- name: ensure zsh plugin directory
+  file: "path=/usr/share/zsh/plugins state=directory"
+
 - name: install zsh syntax highlighting
-  package:
-    name: zsh-syntax-highlighting
-    state: present
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: /usr/share/zsh/plugins/zsh-syntax-highlighting
 
 - name: install zsh history search
-  package:
-    name: zsh-history-substring-search
-    state: present
+  git:
+    repo: https://github.com/zsh-users/zsh-history-substring-search
+    dest: /usr/share/zsh/plugins/zsh-history-substring-search
 
 - name: link zsh config
   file:

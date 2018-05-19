@@ -4,7 +4,7 @@
 
 - name: install inconsolata
   package:
-    name: ttf-inconsolata
+    name: "{{ inconsolata_package_name }}"
     state: present
 
 - name: install inconsolata powerline

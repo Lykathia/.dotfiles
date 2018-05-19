@@ -1,4 +1,10 @@
 ---
+- include_vars: "{{ item }}"
+  with_first_found:
+    - "{{ ansible_os_family.split()[0] | lower }}.yml"
+    - "default.yml"
+
 - import_tasks: fonts.yml
 - import_tasks: tmux.yml
 - import_tasks: zsh.yml
+- import_tasks: tree.yml
