@@ -31,5 +31,4 @@ nautilus --no-desktop -n &
 #--------------------------------------------------------------------
 hsetroot -center ~/wallpaper.jpg
 xsetroot -cursor_name left_ptr
-#exec dbus-launch xmonad
 exec bspwm
