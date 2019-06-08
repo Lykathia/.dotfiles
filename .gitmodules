@@ -11,7 +11,7 @@
 	path = vim/bundle/vim-scala
 	url = git://github.com/derekwyatt/vim-scala.git
 [submodule "vim/bundle/vim-airline"]
-	path = vim/bundle/vim-airline
+	path = vim/pack/git/start/vim-airline
 	url = git://github.com/bling/vim-airline
 [submodule "vim/bundle/vim-easymotion"]
 	path = vim/pack/git/start/vim-easymotion
@@ -32,7 +32,7 @@
 	path = vim/bundle/vim-snippets
 	url = git://github.com/honza/vim-snippets.git
 [submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
+	path = vim/pack/git/start/vim-surround
 	url = git://github.com/tpope/vim-surround
 [submodule "vim/bundle/vim-sxhkdrc"]
 	path = vim/bundle/vim-sxhkdrc
