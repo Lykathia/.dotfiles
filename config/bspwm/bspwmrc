@@ -21,4 +21,4 @@ bspc config focus_by_distance   true
 
 bspc rule -a Gimp desktop=^8 follow=on floating=on
 
-~/.config/bspwm/panel/panel &
+$HOME/.config/polybar/launch.sh
