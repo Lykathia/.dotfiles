@@ -49,3 +49,6 @@
 [submodule "vim/pack/git/rust"]
 	path = vim/pack/git/rust
 	url = https://github.com/rust-lang/rust.vim
+[submodule "vim/pack/git/editorconfig"]
+	path = vim/pack/git/editorconfig
+	url = https://github.com/editorconfig/editorconfig-vim.git
