@@ -19,9 +19,6 @@
 [submodule "vim/bundle/vim-markdown"]
 	path = vim/bundle/vim-markdown
 	url = git://github.com/tpope/vim-markdown
-[submodule "vim/bundle/vim-snipmate"]
-	path = vim/bundle/vim-snipmate
-	url = git://github.com/garbas/vim-snipmate
 [submodule "vim/bundle/tlib_vim"]
 	path = vim/bundle/tlib_vim
 	url = git://github.com/tomtom/tlib_vim.git
@@ -47,8 +44,11 @@
 	path = vim/pack/git/start/ale
 	url = https://github.com/w0rp/ale.git
 [submodule "vim/pack/git/rust"]
-	path = vim/pack/git/rust
+	path = vim/pack/git/start/rust
 	url = https://github.com/rust-lang/rust.vim
 [submodule "vim/pack/git/editorconfig"]
-	path = vim/pack/git/editorconfig
+	path = vim/pack/git/start/editorconfig
 	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule "vim/pack/git/start/vim-devicons"]
+	path = vim/pack/git/start/vim-devicons
+	url = git@github.com:ryanoasis/vim-devicons.git
