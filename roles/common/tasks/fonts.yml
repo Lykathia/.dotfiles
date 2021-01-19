@@ -3,6 +3,7 @@
   file: "path={{ ansible_env.HOME }}/.fonts state=directory"
 
 - name: install inconsolata
+  become: yes
   package:
     name: "{{ inconsolata_package_name }}"
     state: present
