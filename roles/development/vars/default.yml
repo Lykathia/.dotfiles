@@ -1,0 +1,7 @@
+packages_common:
+  - fzf
+  - ripgrep
+  - sd
+  - bat
+  - less
+  - tokei

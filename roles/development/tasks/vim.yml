@@ -1,13 +1,26 @@
 ---
-- name: install vim
+- name: install neo vim
   become: yes
   package:
-    name: vim
+    name: neovim
     state: present
+
+- name: Create nvim config directory
+  file:
+    path: ~/.config/nvim
+    state: directory
+    mode: '0755'
 
 - name: link vimrc
   file:
     src: "{{ role_path }}/files/vimrc"
     dest: "{{ ansible_env.HOME }}/.vimrc"
     state: link
-    force: yes
+    force: true
+
+- name: Symlink nvim config
+  file:
+    src: "{{ role_path }}/files/nvim/init.lua"
+    dest: ~/.config/nvim/init.lua
+    state: link
+    force: true

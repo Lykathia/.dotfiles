@@ -1,0 +1,74 @@
+- name: Ensure OpenSSH is installed
+  become: true
+  package:
+    name: openssh
+    state: present
+    update_cache: true
+
+- name: Ensure Git user.name is set
+  ansible.builtin.git_config:
+    name: user.name
+    scope: global
+    value: "Evan Lowry"
+
+- name: Ensure Git user.email is set
+  ansible.builtin.git_config:
+    name: user.email
+    scope: global
+    value: "lowry.e@gmail.com"
+
+- name: Ensure Git uses commit signing
+  ansible.builtin.git_config:
+    name: commit.gpgSign
+    scope: global
+    value: true
+
+- name: Get Keybase GPG key ID
+  shell: "keybase pgp list | rg 'PGP Fingerprint: (.*)' -or '$1'"
+  register: keybase_key
+  changed_when: false
+
+- name: Configure Git to sign commits with Keybase key
+  git_config:
+    name: user.signingkey
+    scope: global
+    value: "{{ keybase_key.stdout }}"
+
+- name: Enable Git push default to simple
+  ansible.builtin.git_config:
+    name: push.default
+    scope: global
+    value: simple
+
+- name: Enable reflog
+  ansible.builtin.git_config:
+    name: log.allRefUpdates
+    scope: global
+    value: true
+
+- name: Ensure ~/.ssh directory exists
+  file:
+    path: ~/.ssh
+    state: directory
+    mode: '0700'
+
+- name: Check for existing SSH key
+  stat:
+    path: ~/.ssh/id_ed25519.pub
+  register: sshkey
+
+- name: Generate SSH key if missing
+  community.crypto.openssh_keypair:
+    path: ~/.ssh/id_ed25519
+    type: ed25519
+    comment: "{{ ansible_user_id }}@{{ ansible_hostname }}"
+  when: not sshkey.stat.exists
+
+- name: Print GitHub public key for manual upload
+  command: cat ~/.ssh/id_ed25519.pub
+  register: pubkey
+  when: not sshkey.stat.exists
+
+- debug:
+    msg: "Add this SSH key to your GitHub account: {{ pubkey.stdout }}"
+  when: not sshkey.stat.exists

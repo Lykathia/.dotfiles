@@ -1,27 +1,28 @@
 .dotfiles
 =======
 
-Personal configuration files. Inside you will find:
+This repository contains an Ansible playbook and roles to set up a consistent development
+environment.
 
-#### Desktop Environment
-
-I'm currently a big fan of BSPWM. Slowly adding more fun and productivity features to this.
-
-
-#### Programming Related
-
-* zsh, tmux, urxvt
-* vim
-    * with lots of plugins... for a non-plugin guy
+Features:
+- ZSH as default shell, with FZF integration
+- Neovim
+- Modern shell productivity tools (rg, fzf, sd, bat, etc)
+- SSH keypair generation if not present
+- BSPWM desktop environment
+- tmux
 
 Install
 -------
 
-Moving the install portion over to ansible.
+On Arch, `git`, `yay` and `keybase` are handled separetly.
 
 ```
-ansible-playbook playbook.yml
+sudo pacman -Syu ansible
+ansible-playbook playbook.yml -K
 ```
+
+If `~/.ssh/id_ed25519` does not exist, one will be generated for importing into GitHub.
 
 Inspiration
 -----------

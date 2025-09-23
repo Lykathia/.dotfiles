@@ -1,5 +1,6 @@
 ---
 - name: install tree
+  become: true
   package:
     name: tree
     state: present

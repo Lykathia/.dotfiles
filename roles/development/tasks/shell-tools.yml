@@ -1,0 +1,7 @@
+---
+- name: install base shell tools
+  become: true
+  package:
+    name: "{{ packages_common }}"
+    state: present
+    update_cache: true

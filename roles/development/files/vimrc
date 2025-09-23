@@ -1,7 +1,3 @@
-" Pathogen
-let g:pathogen_disabled = ['pathogen']
-execute pathogen#infect()
-
 " The most important of keybinds
 let mapleader = ","
 
