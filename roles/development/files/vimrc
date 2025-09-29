@@ -52,10 +52,6 @@ autocmd FileType c,cpp,java,scala,html,coffee,ts autocmd BufWritePre <buffer> :%
 au BufRead /tmp/mutt-* set tw=72
 au BufRead /tmp/mutt-* set fo+=aw
 
-" CtrlP Settings
-let g:ctrlp_custom_ignore = '\v%(/\.%(git|hg|svn)|\.%(class|o|png|jpg|jpeg|bmp|tar|jar|tgz|deb|zip)$|/%(target|build)/)'
-map <leader>b :CtrlPBuffer<CR>
-
 " Python-Mode settings
 let g:pymode_rope = 0
 let g:pymode_folding = 0
@@ -73,6 +69,7 @@ au FileType rust :setlocal sw=2 ts=2
 au FileType stylus :setlocal sw=2 ts=2
 au FileType yaml :setlocal sw=2 ts=2
 au FileType markdown :setlocal sw=2 ts=2
+au FileType svelte :setlocal sw=2 ts=2
 
 " Gradle
 au BufNewFile,BufRead *.gradle setf groovy
@@ -83,6 +80,7 @@ autocmd FileType markdown let g:airline#extensions#whitespace#checks = [ 'indent
 
 " Keybinds
 command! W :execute ':silent w !sudo tee % > /dev/null' | :edit!
+map <C-p> :Files<cr>
 map <C-Tab> :bnext<cr>
 map <C-S-Tab> :bprevious<cr>
 map <leader>gb :Gblame<cr>

@@ -15,6 +15,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-fugitive'
   use 'dense-analysis/ale'
   use 'junegunn/fzf.vim'
-  use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+  use {'nvim-treesitter/nvim-treesitter', run = require("nvim-treesitter.install").update() }
   use 'neovim/nvim-lspconfig'
+  use 'leafOfTree/vim-svelte-plugin'
 end)
