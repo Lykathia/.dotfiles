@@ -140,6 +140,9 @@ zmodload zsh/terminfo
 # Fuzzy search
 source <(fzf --zsh)
 
+# golang
+export GOTMPDIR="$HOME/tmp/"
+
 # pnpm
 export PNPM_HOME="$HOME/.local/share/pnpm"
 case ":$PATH:" in

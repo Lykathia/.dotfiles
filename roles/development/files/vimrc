@@ -70,6 +70,7 @@ au FileType stylus :setlocal sw=2 ts=2
 au FileType yaml :setlocal sw=2 ts=2
 au FileType markdown :setlocal sw=2 ts=2
 au FileType svelte :setlocal sw=2 ts=2
+au FileType typescript :setlocal sw=2 ts=2
 
 " Gradle
 au BufNewFile,BufRead *.gradle setf groovy

@@ -1,21 +1,4 @@
 vim.cmd [[ source ~/.vimrc ]]
 
--- bootstrap packer if missing
-local fn = vim.fn
-local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-  fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
-  vim.cmd 'packadd packer.nvim'
-end
-
-require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
-  use 'vim-airline/vim-airline'
-  use 'easymotion/vim-easymotion'
-  use 'tpope/vim-fugitive'
-  use 'dense-analysis/ale'
-  use 'junegunn/fzf.vim'
-  use {'nvim-treesitter/nvim-treesitter', run = require("nvim-treesitter.install").update() }
-  use 'neovim/nvim-lspconfig'
-  use 'leafOfTree/vim-svelte-plugin'
-end)
+-- Bootstrap lazy.nvim
+require("config.lazy")

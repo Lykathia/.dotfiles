@@ -1,3 +1,5 @@
 vim/.netrwhist
 config/systemd/user/default.target.wants/*
 *.retry
+roles/development/files/nvim/lazyvim.json
+roles/development/files/nvim/lazy-lock.json
