@@ -1,6 +1,6 @@
 ---
 - name: create user font directory
-  file: "path={{ ansible_env.HOME }}/.fonts state=directory"
+  file: "path={{ ansible_facts['env']['HOME'] }}/.fonts state=directory"
 
 - name: install inconsolata
   become: yes
@@ -11,6 +11,6 @@
 - name: install inconsolata powerline
   get_url:
     url: https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
-    dest: "{{ ansible_env.HOME }}/.fonts/inconsolata-powerline.otf"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.fonts/inconsolata-powerline.otf"
   notify:
     - rebuild font cache

@@ -1,7 +1,7 @@
 ---
 - include_vars: "{{ item }}"
   with_first_found:
-    - "{{ ansible_os_family.split()[0] | lower }}.yml"
+    - "{{ ansible_facts['os_family'].split()[0] | lower }}.yml"
     - "default.yml"
 
 - import_tasks: shell-tools.yml

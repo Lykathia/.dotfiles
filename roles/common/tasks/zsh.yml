@@ -18,6 +18,6 @@
 - name: link zsh config
   file:
     src: "{{ role_path }}/files/zshrc"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.zshrc"
     state: link
     force: yes

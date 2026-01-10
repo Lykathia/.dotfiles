@@ -8,7 +8,7 @@
 - name: link vimrc
   file:
     src: "{{ role_path }}/files/vimrc"
-    dest: "{{ ansible_env.HOME }}/.vimrc"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.vimrc"
     state: link
     force: true
 
