@@ -1,0 +1,23 @@
+---
+- name: Install Hyprland and related packages
+  become: yes
+  package:
+    name:
+      - hyprland
+      - xdg-desktop-portal-hyprland
+      - hyprpolkitagent
+      - hyprpaper
+      - hyprlock
+      - hypridle
+    state: present
+
+- name: Install Hyprland utilities
+  become: yes
+  package:
+    name:
+      - alacritty
+      - rofi
+      - dunst
+      - thunar
+      - cliphist
+    state: present

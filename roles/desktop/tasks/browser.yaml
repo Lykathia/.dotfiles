@@ -1,0 +1,6 @@
+---
+- name: Install Firefox Developer Edition
+  become: yes
+  package:
+    name: firefox-developer-edition
+    state: present

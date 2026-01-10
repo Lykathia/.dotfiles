@@ -1,0 +1,15 @@
+---
+- name: Import PipeWire audio system tasks
+  ansible.builtin.import_tasks: pipewire.yaml
+
+- name: Import system utilities tasks
+  ansible.builtin.import_tasks: utilities.yaml
+
+- name: Import SDDM display manager tasks
+  ansible.builtin.import_tasks: sddm.yaml
+
+- name: Import Hyprland tasks
+  ansible.builtin.import_tasks: hyprland.yaml
+
+- name: Import web browser tasks
+  ansible.builtin.import_tasks: browser.yaml

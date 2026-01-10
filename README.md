@@ -18,8 +18,10 @@ Install
 On Arch, `git`, `yay` and `keybase` are handled separetly.
 
 ```
-sudo pacman -Syu ansible
+yay -Syu ansible keybase
+keybase login
 ansible-playbook playbook.yml -K
+yay -S sddm-silent-theme ashell
 ```
 
 If `~/.ssh/id_ed25519` does not exist, one will be generated for importing into GitHub.

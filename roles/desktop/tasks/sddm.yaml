@@ -1,0 +1,14 @@
+---
+- name: Install SDDM and fonts
+  become: yes
+  package:
+    name:
+      - sddm
+      - ttf-dejavu
+    state: present
+
+- name: Enable SDDM service
+  become: yes
+  ansible.builtin.systemd:
+    name: sddm.service
+    enabled: yes

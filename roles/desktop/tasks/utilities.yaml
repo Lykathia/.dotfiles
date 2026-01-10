@@ -1,0 +1,19 @@
+---
+- name: Install desktop system utilities
+  become: yes
+  package:
+    name:
+      - brightnessctl
+      - upower
+      - bluez
+    state: present
+
+- name: Enable system services
+  become: yes
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  loop:
+    - bluetooth.service
+    - upower.service

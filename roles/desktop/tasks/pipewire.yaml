@@ -1,0 +1,20 @@
+---
+- name: Install PipeWire packages
+  become: yes
+  package:
+    name:
+      - pipewire
+      - pipewire-jack
+      - pipewire-alsa
+      - pipewire-pulse
+      - wireplumber
+    state: present
+
+- name: Enable PipeWire user services
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    enabled: yes
+    scope: user
+  loop:
+    - pipewire.service
+    - pipewire-pulse.service
