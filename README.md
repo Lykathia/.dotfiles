@@ -15,13 +15,14 @@ Features:
 Install
 -------
 
-On Arch, `git`, `yay` and `keybase` are handled separetly.
+On Arch, `git`, `yay` and `keybase` are handled separately.
 
 ```
 yay -Syu ansible keybase
 keybase login
 ansible-playbook playbook.yml -K
 yay -S sddm-silent-theme ashell
+keybase pgp export --secret | gpg --allow-secret-key-import --import
 ```
 
 If `~/.ssh/id_ed25519` does not exist, one will be generated for importing into GitHub.
