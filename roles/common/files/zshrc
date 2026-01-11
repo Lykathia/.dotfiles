@@ -50,7 +50,20 @@ bindkey "\e[5D" backward-word
 bindkey "\ee[C" forward-word
 bindkey "\ee[D" backward-word
 
-bindkey '^R' history-incremental-search-backward
+bindkey "$terminfo[kcuu1]" history-substring-search-up
+bindkey "$terminfo[kcud1]" history-substring-search-down
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+
+# bind UP and DOWN arrow keys to history substring search
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
+bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
 
 # Terminal Prompt
 PROMPT="%{$fg[green]%}%n@%m%#%{$reset_color%} "
@@ -132,11 +145,11 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
 # Plugins
+zmodload zsh/terminfo
 
 # Use syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# bind UP and DOWN arrow keys to history substring search
-zmodload zsh/terminfo
+
 # Fuzzy search
 source <(fzf --zsh)
 
