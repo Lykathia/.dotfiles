@@ -5,6 +5,7 @@
     name:
       - sddm
       - ttf-dejavu
+      - ttf-dejavu-nerd
     state: present
 
 - name: Enable SDDM service

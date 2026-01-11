@@ -8,6 +8,12 @@
     name: "{{ inconsolata_package_name }}"
     state: present
 
+- name: install inconsolata nerd
+  become: yes
+  package:
+    name: ttf-inconsolata-nerd
+    state: present
+
 - name: install inconsolata powerline
   get_url:
     url: https://github.com/powerline/fonts/raw/master/Inconsolata/Inconsolata%20for%20Powerline.otf
