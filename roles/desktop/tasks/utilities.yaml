@@ -22,10 +22,36 @@
     - tlp.service
     - NetworkManager-dispatcher.service
 
+- name: Mask conflicting services
+  become: yes
+  ansible.builtin.systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+    masked: yes
+  loop:
+    - systemd-rfkill.service
+    - systemd-rfkill.socket
+
 - name: link tlp configuration
   become: yes
   file:
     src: "{{ role_path }}/files/99-tlp.conf"
     dest: "/etc/tlp.d/99-tlp.conf"
+    state: link
+    force: true
+
+- name: Ensure logind config directory exists
+  become: yes
+  file:
+    path: /etc/systemd/logind.conf.d
+    state: directory
+    mode: '0755'
+
+- name: link logind configuration
+  become: yes
+  file:
+    src: "{{ role_path }}/files/99-lidclose.conf"
+    dest: "/etc/systemd/logind.conf.d/99-lidclose.conf"
     state: link
     force: true
