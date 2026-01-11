@@ -1,0 +1,14 @@
+---
+- name: install desktop theme packages
+  become: yes
+  package:
+    name:
+      - matugen
+    state: present
+
+- name: Symlink matugen config
+  file:
+    src: "{{ role_path }}/files/matugen"
+    dest: "~/.config/matugen"
+    state: link
+    force: true

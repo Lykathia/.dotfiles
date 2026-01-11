@@ -1,5 +1,5 @@
 ---
-- name: Install Hyprland and related packages
+- name: install hyprland and related packages
   become: yes
   package:
     name:
@@ -11,7 +11,7 @@
       - hypridle
     state: present
 
-- name: Install Hyprland utilities
+- name: install hyprland utilities
   become: yes
   package:
     name:

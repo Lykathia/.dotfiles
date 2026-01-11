@@ -1,0 +1,49 @@
+[config.wallpaper]
+set = false
+
+# --- HYPRLAND Ecosystem ---
+
+[templates.hyprland]
+input_path = "~/.config/matugen/templates/hyprland-colors.conf"
+output_path = "~/.config/hypr/colors.conf"
+post_hook = 'hyprctl reload'
+
+[templates.ashell]
+input_path = "~/.config/matugen/templates/ashell.toml"
+output_path = "~/.config/ashell/themes/matugen.toml"
+
+[templates.dunst]
+input_path = "~/.config/matugen/templates/dunstrc-colors"
+output_path = "~/.config/dunst/dunstrc"
+post_hook = 'dunstctl reload'
+
+[templates.rofi]
+input_path = "~/.config/matugen/templates/rofi-colors.rasi"
+output_path = "~/.config/rofi/colors.rasi"
+
+# --- TERMINAL & SHELL ---
+
+[templates.alacritty]
+input_path = "~/.config/matugen/templates/alacritty.toml"
+output_path = "~/.config/alacritty/colors.toml"
+
+[templates.tmux]
+input_path = "~/.config/matugen/templates/tmux-colors.conf"
+output_path = "~/.config/tmux/colors.conf"
+post_hook = 'tmux source-file ~/.config/tmux/colors.conf'
+
+# --- GUI TOOLKIT (GTK/QT) ---
+
+[templates.gtk3]
+input_path = "~/.config/matugen/templates/gtk-colors.css"
+output_path = "~/.config/gtk-3.0/gtk.css"
+post_hook = 'gsettings set org.gnome.desktop.interface gtk-theme ""; gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-{{mode}}'
+
+[templates.gtk4]
+input_path = "~/.config/matugen/templates/gtk-colors.css"
+output_path = "~/.config/gtk-4.0/gtk.css"
+
+# obsidian
+# discord
+# firefox?
+# neovim?

@@ -11,5 +11,8 @@
 - name: Import Hyprland tasks
   ansible.builtin.import_tasks: hyprland.yaml
 
+- name: Import theme tasks
+  ansible.builtin.import_tasks: theme.yaml
+
 - name: Import web browser tasks
   ansible.builtin.import_tasks: browser.yaml
