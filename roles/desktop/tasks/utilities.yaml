@@ -6,6 +6,8 @@
       - brightnessctl
       - upower
       - bluez
+      - tlp
+      - tlp-rdw
     state: present
 
 - name: Enable system services
@@ -17,3 +19,13 @@
   loop:
     - bluetooth.service
     - upower.service
+    - tlp.service
+    - NetworkManager-dispatcher.service
+
+- name: link tlp configuration
+  become: yes
+  file:
+    src: "{{ role_path }}/files/99-tlp.conf"
+    dest: "/etc/tlp.d/99-tlp.conf"
+    state: link
+    force: true
