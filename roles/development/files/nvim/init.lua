@@ -1,4 +1,4 @@
-vim.cmd [[ source ~/.vimrc ]]
+vim.cmd([[ source ~/.vimrc ]])
 
 -- Bootstrap lazy.nvim
 require("config.lazy")
