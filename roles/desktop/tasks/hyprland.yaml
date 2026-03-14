@@ -6,7 +6,6 @@
       - hyprland
       - xdg-desktop-portal-hyprland
       - hyprpolkitagent
-      - hyprpaper
       - hyprlock
       - hypridle
     state: present
