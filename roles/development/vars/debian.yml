@@ -1,8 +1,11 @@
 ---
+fzf_version: "0.70.0"
+nvim_version: "0.11.6"
+
 packages_common:
-  - fzf
   - ripgrep
   - sd
   - bat
   - less
+  - direnv
 openssh_package_name: openssh-client

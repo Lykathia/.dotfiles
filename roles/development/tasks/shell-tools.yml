@@ -13,3 +13,18 @@
     dest: /usr/bin/bat
     state: link
   when: ansible_facts['os_family'] == 'Debian'
+
+- name: install fzf from GitHub release (Debian/Ubuntu)
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://github.com/junegunn/fzf/releases/download/v{{ fzf_version }}/fzf-{{ fzf_version }}-linux_amd64.tar.gz"
+    dest: /usr/local/bin
+    remote_src: true
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: install fzf package (Arch)
+  become: true
+  package:
+    name: fzf
+    state: present
+  when: ansible_facts['os_family'] == 'Archlinux'

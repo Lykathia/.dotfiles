@@ -27,3 +27,10 @@
     dest: "{{ ansible_facts['env']['HOME'] }}/.zshrc"
     state: link
     force: yes
+
+- name: link zsh profile
+  file:
+    src: "{{ role_path }}/files/zprofile"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.zprofile"
+    state: link
+    force: yes

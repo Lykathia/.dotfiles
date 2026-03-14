@@ -1,9 +1,26 @@
 ---
-- name: install neo vim
-  become: yes
+- name: install neovim from GitHub release (Debian/Ubuntu)
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://github.com/neovim/neovim/releases/download/v{{ nvim_version }}/nvim-linux-x86_64.tar.gz"
+    dest: /opt
+    remote_src: true
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: symlink nvim binary (Debian/Ubuntu)
+  become: true
+  file:
+    src: /opt/nvim-linux-x86_64/bin/nvim
+    dest: /usr/local/bin/nvim
+    state: link
+  when: ansible_facts['os_family'] == 'Debian'
+
+- name: install neovim package (Arch)
+  become: true
   package:
     name: neovim
     state: present
+  when: ansible_facts['os_family'] == 'Archlinux'
 
 - name: link vimrc
   file:

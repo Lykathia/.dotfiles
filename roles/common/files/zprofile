@@ -1,0 +1,3 @@
+# ZSH does not source ~/.profile on its own (only bash does).
+# Source it here so login-shell environment variables are available.
+[[ -f ~/.profile ]] && source ~/.profile
