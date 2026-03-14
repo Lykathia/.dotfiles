@@ -3,9 +3,6 @@ autoload -U colors && colors
 autoload -U promptinit && promptinit
 autoload -U compinit && compinit
 
-# Print a greeting message when shell is started
-echo $USER@$HOST  $(uname -srm) $(lsb_release -rcs)
-
 # Options
 setopt appendhistory
 setopt correct
@@ -75,6 +72,9 @@ alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then
     alias top='htop' # Use htop instead of top when available
+fi
+if [ -f /usr/bin/btop ]; then
+    alias top='btop' # Use btop instead of top when available
 fi
 alias grep='grep -i' # Case insensative
 alias gitcb='git branch --merged | egrep -v "(^\*|master)" | xargs git branch -d'
@@ -163,3 +163,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+eval "$(direnv hook zsh)"
