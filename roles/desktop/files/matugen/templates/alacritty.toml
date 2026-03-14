@@ -40,9 +40,9 @@ black = '#181818'
 red = '{{colors.error.default.hex}}' 
 green = '{{colors.primary.default.hex}}' 
 yellow = '{{colors.inverse_primary.default.hex}}' 
-blue = '{{colors.primary.default.hex}}' 
-magenta = '{{colors.tertiary.default.hex}}' 
-cyan = '{{colors.secondary.default.hex}}' 
+blue = '{{colors.tertiary.default.hex}}' 
+magenta = '{{colors.secondary.default.hex}}' 
+cyan = '{{colors.tertiary_fixed.default.hex}}' 
 white = '#BAC2DE' 
  
  

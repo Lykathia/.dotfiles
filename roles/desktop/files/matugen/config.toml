@@ -1,5 +1,4 @@
-[config.wallpaper]
-set = false
+[config]
 
 # --- HYPRLAND Ecosystem ---
 
@@ -8,9 +7,9 @@ input_path = "~/.config/matugen/templates/hyprland-colors.conf"
 output_path = "~/.config/hypr/colors.conf"
 post_hook = 'hyprctl reload'
 
-[templates.ashell]
-input_path = "~/.config/matugen/templates/ashell.toml"
-output_path = "~/.config/ashell/themes/matugen.toml"
+#[templates.ashell]
+#input_path = "~/.config/matugen/templates/ashell.toml"
+#output_path = "~/.config/ashell/themes/matugen.toml"
 
 [templates.dunst]
 input_path = "~/.config/matugen/templates/dunstrc-colors"
@@ -30,7 +29,7 @@ output_path = "~/.config/alacritty/colors.toml"
 [templates.tmux]
 input_path = "~/.config/matugen/templates/tmux-colors.conf"
 output_path = "~/.config/tmux/colors.conf"
-post_hook = 'tmux source-file ~/.config/tmux/colors.conf'
+# post_hook = 'tmux source-file ~/.config/tmux/colors.conf'
 
 # --- GUI TOOLKIT (GTK/QT) ---
 
