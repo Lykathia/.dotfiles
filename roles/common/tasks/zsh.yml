@@ -15,6 +15,12 @@
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: /usr/share/zsh/plugins/zsh-syntax-highlighting
 
+- name: set zsh as default shell
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: /usr/bin/zsh
+
 - name: link zsh config
   file:
     src: "{{ role_path }}/files/zshrc"

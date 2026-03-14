@@ -67,7 +67,9 @@ PROMPT="%{$fg[green]%}%n@%m%#%{$reset_color%} "
 RPROMPT="%{$fg_bold[blue]%}%~%{$reset_color%}"
 
 # Aliases
-alias pacman='sudo pacman'
+if command -v pacman &>/dev/null; then
+    alias pacman='sudo pacman'
+fi
 alias ls='ls --color=auto'
 alias df='df -h -x none'
 if [ -f /usr/bin/htop ]; then

@@ -1,7 +1,7 @@
 - name: Ensure OpenSSH is installed
   become: true
   package:
-    name: openssh
+    name: "{{ openssh_package_name }}"
     state: present
     update_cache: true
 
@@ -17,22 +17,31 @@
     scope: global
     value: "lowry.e@gmail.com"
 
+- name: Check if Keybase is installed
+  command: which keybase
+  register: keybase_check
+  changed_when: false
+  failed_when: false
+
 - name: Ensure Git uses commit signing
   ansible.builtin.git_config:
     name: commit.gpgSign
     scope: global
     value: true
+  when: keybase_check.rc == 0
 
 - name: Get Keybase GPG key ID
   shell: "keybase pgp list | rg 'PGP Fingerprint: (.*)' -or '$1'"
   register: keybase_key
   changed_when: false
+  when: keybase_check.rc == 0
 
 - name: Configure Git to sign commits with Keybase key
   git_config:
     name: user.signingkey
     scope: global
     value: "{{ keybase_key.stdout }}"
+  when: keybase_check.rc == 0
 
 - name: Enable Git push default to simple
   ansible.builtin.git_config:

@@ -5,3 +5,11 @@
     name: "{{ packages_common }}"
     state: present
     update_cache: true
+
+- name: symlink batcat to bat (Debian/Ubuntu)
+  become: true
+  file:
+    src: /usr/bin/batcat
+    dest: /usr/bin/bat
+    state: link
+  when: ansible_facts['os_family'] == 'Debian'

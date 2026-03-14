@@ -1,4 +1,10 @@
 ---
+- name: install fontconfig
+  become: yes
+  package:
+    name: fontconfig
+    state: present
+
 - name: create user font directory
   file: "path={{ ansible_facts['env']['HOME'] }}/.fonts state=directory"
 
@@ -13,6 +19,7 @@
   package:
     name: ttf-inconsolata-nerd
     state: present
+  when: ansible_facts['os_family'] == 'Archlinux'
 
 - name: install inconsolata powerline
   get_url:
