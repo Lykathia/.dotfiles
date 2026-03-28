@@ -5,7 +5,6 @@ return {
 		lazy = false,
 		priority = 1000,
 	},
-	-- { "vim-airline/vim-airline" }, should be already replaced with lualine
 	{ "easymotion/vim-easymotion" },
 	{ "folke/noice.nvim", enabled = false },
 	{
@@ -16,14 +15,30 @@ return {
 	},
 	{ "nvim-mini/mini.pairs", enabled = false },
 
+	-- Coding
+	{
+		"nvim-mini/mini.nvim",
+		version = "*",
+		config = function()
+			require("mini.surround").setup()
+			require("mini.align").setup()
+			require("mini.comment").setup()
+		end,
+	},
+
 	-- Git
 	{ "tpope/vim-fugitive" },
+	{
+		"lykathia/gitlink.nvim",
+		dev = true,
+		event = "VeryLazy",
+	},
 	{
 		"2kabhishek/co-author.nvim",
 		dependencies = {
 			"folke/snacks.nvim",
 		},
-		cmd = { "CoAuthor" },
+		CMD = { "COAUTHOR" },
 	},
 
 	-- Diagnostics / linting
