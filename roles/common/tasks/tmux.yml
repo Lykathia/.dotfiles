@@ -11,3 +11,16 @@
     dest: "{{ ansible_facts['env']['HOME'] }}/.tmux.conf"
     state: link
     force: yes
+
+# for additional scripts / configuration
+- name: create tmux config directory
+  file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/tmux"
+    state: directory
+
+- name: link tmux git helper
+  file:
+    src: "{{ role_path }}/files/tmux-git-segment.sh"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/tmux/git-segment.sh"
+    state: link
+    force: yes
